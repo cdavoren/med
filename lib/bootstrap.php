@@ -39,7 +39,7 @@ $connectionParams = array(
 
 // Establish database connection and create entity manager
 $conn = DriverManager::getConnection($connectionParams, $config);
-$config = Setup::createYAMLMetadataConfiguration(array('../config/schema'), true);
+$config = Setup::createYAMLMetadataConfiguration(array(__DIR__.'/../config/schema'), true);
 $em = EntityManager::create($connectionParams, $config);
 
 // Password hasher
