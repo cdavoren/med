@@ -1,0 +1,11 @@
+<?php
+
+$databaseConfig = array();
+
+$databaseConfig['host'] = 'localhost';
+$databaseConfig['port'] = 3306;
+$databaseConfig['user'] = 'user';
+$databaseConfig['pass'] = 'pass';
+$databaseConfig['name'] = 'med';
+
+?>

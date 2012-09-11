@@ -1,0 +1,8 @@
+<?php
+
+$phpassSettings = array(
+    'hash_cost_log2' => 8,
+    'hash_portable' => false,
+);
+
+?>

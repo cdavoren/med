@@ -1,0 +1,16 @@
+User:
+  type: entity
+  table: users
+  id:
+    id:
+      type: integer
+      generator:
+        strategy: AUTO
+  fields:
+    username:     { type: string, length: 60, unique: true }
+    passwordhash: { type: string, length: 60 }
+    email:        { type: string, length: 255, default: "" }
+    fullname:     { type: string, length: 255, default: "" }
+    active:       { type: boolean, default: true }
+    admin:        { type: boolean, default: false }
+

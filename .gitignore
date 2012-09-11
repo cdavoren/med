@@ -1,2 +1,10 @@
 # On the development machine, this directory contains a convenient symlink to PHPMyAdmin
 www/pma
+
+# Ignore vim swap files, if present
+*.swp
+
+# Contents of these files will be unique to each deployment
+config/database.php
+config/security.php
+
