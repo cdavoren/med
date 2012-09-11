@@ -3,7 +3,7 @@ require_once('../lib/bootstrap.php');
 
 $ur = $em->getRepository('User');
 
-$page_title = 'Index Page'; 
+$pageTitle = 'Index Page'; 
 ?>
 
 <?php require_once('../template/header.php'); ?>
