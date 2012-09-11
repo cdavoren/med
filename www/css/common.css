@@ -27,3 +27,22 @@ h1 {
     border-bottom: 1px solid #CCC;
 }
 
+table.inputform {
+    border: 0px solid black;
+    color: inherit;
+}
+
+table.inputform td {
+    border: 0px solid black;
+    padding: 1px 5px;
+    font-style: italic;
+}
+
+table.inputform tr {
+    border: 0px solid black;
+    padding: 1px;
+}
+
+p.error {
+    color: #E00;
+}
