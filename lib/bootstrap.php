@@ -45,7 +45,7 @@ $em = EntityManager::create($connectionParams, $config);
 // Password hasher
 $ph = new PasswordHash(
     $phpassSettings['hash_cost_log2'], 
-    $phpassSettings['hash_portable'],
+    $phpassSettings['hash_portable']
 );
 
 ?>
