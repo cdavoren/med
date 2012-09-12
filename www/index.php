@@ -8,8 +8,51 @@ $pageTitle = 'Index Page';
 
 <?php require_once('../template/header.php'); ?>
 
+<script type="text/javascript">
+function logout_handler(e) {
+  $.ajax({
+    type: 'post',
+    dataType: 'json',
+    url: 'user/logout.php',
+    data: { username : '<?php echo $loggedUser === null ? 'null' : $loggedUser->getUsername() ?>' },
+    success: function(d) {
+      if (d.success) {
+        // alert('Logout successful.');
+        location.reload();
+      }
+      else {
+        alert('An error occurred while logging out.  Please contact your system administrator.');
+      }
+    },
+    error: function(jqXHR, reason, errorThrown) {
+      console.log(reason);
+      console.log(errorThrown);
+      alert('An error occurred while logging out.  Please contact your system administrator.');
+    },
+  });
+  return false;
+}
+
+$(document).ready(function() {
+  $('a#logout').click(logout_handler);
+});
+</script>
+
 <h1>TEST</h1>
-<p>This is body text in a &lt;p&gt; tag.</p>
+
+<p>
+<?php
+if ($loggedUser !== null) {
+  print 'The current user is '.$loggedUser->getFullname().'.';
+?>
+ ( <a id="logout" href="#" alt="logout" title="logout">logout</a> )
+<?php
+}
+else {
+  print 'There is no user logged in.';
+}
+?>
+</p>
 
 <?php
 if ($ur->findBy(array('username' => 'admin')) == null) {

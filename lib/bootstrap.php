@@ -1,5 +1,8 @@
 <?php
 
+// Sessions are a necessity
+session_start();
+
 // Load configuration settings
 require('../config/database.php');
 require('../config/security.php');
@@ -39,6 +42,12 @@ $connectionParams = array(
 $conn = DriverManager::getConnection($connectionParams, $config);
 $config = Setup::createYAMLMetadataConfiguration(array(__DIR__.'/../config/schema'), true);
 $em = EntityManager::create($connectionParams, $config);
+
+// Ensure that the user entity is conveniently available, if one is logged in
+$loggedUser = null;
+if (isset($_SESSION['userid'])) {
+  $loggedUser = $em->find('\rubikscomplex\model\User', $_SESSION['userid']);
+}
 
 // Password hasher
 $ph = new PasswordHash(
