@@ -30,7 +30,7 @@ function validate() {
   else if (strlen($fullname) == 0) {
     $error = 'Full name is required.';
   }
-  else if (count($em->getRepository('User')->findBy(array('username' => $username))) != 0) {
+  else if (count($em->getRepository('\rubikscomplex\model\User')->findBy(array('username' => $username))) != 0) {
     $error = 'That username is already taken, please choose another.';
   }
 
@@ -49,7 +49,7 @@ $error = null;
 if (isset($_POST['username'])) {
   $error = validate();
   if ($error === null) {
-    $newUser = new User();
+    $newUser = new \rubikscomplex\model\User();
     $newUser->setUsername(trim($_POST['username']));
     $newUser->setPasswordhash($ph->HashPassword(trim($_POST['password'])));
     $newUser->setEmail(trim($_POST['email']));
@@ -58,6 +58,11 @@ if (isset($_POST['username'])) {
     $em->flush();
   }
 }
+
+$username = isset($_POST['username']) ? $_POST['username'] : '';
+$email = isset($_POST['email']) ? $_POST['email'] : '';
+$fullname = isset($_POST['fullname']) ? $_POST['fullname'] : '';
+
 ?>
 
 <?php if ($error !== null || !isset($_POST['username'])) : ?>
@@ -74,7 +79,7 @@ if (isset($_POST['username'])) {
 <form action="add.php" method="post">
 <table class="inputform">
 <tr>
-<td>Username:</td><td><input name="username" type="text" maxlength="60" value="<?php echo $_POST['username'] ?>"/></td>
+<td>Username:</td><td><input name="username" type="text" maxlength="60" value="<?php echo $username ?>"/></td>
 </tr>
 <tr><td colspan="2">&nbsp;</td></tr>
 <tr>
@@ -85,14 +90,19 @@ if (isset($_POST['username'])) {
 </tr>
 <tr><td colspan="2">&nbsp;</td></tr>
 <tr>
-<td>Email:</td><td><input name="email" type="text" maxlength="255" value="<?php echo $_POST['email'] ?>"/></td>
+<td>Email:</td><td><input name="email" type="text" maxlength="255" value="<?php echo $email ?>"/></td>
 </tr>
 <tr>
-<td>Full name:</td><td><input name="fullname" type="text" maxlength="255" value="<?php echo $_POST['fullname'] ?>"/></td>
+<td>Full name:</td><td><input name="fullname" type="text" maxlength="255" value="<?php echo $fullname ?>"/></td>
 </tr>
 </table>
 <input type="submit" name="submit" value="Add" />
 </form>
+<?php else: ?>
+
+<h1>REGISTRATION SUCCESSFUL</h1>
+<p>User '<?php echo trim($username) ?>' has been successfully registered.</p>
+
 <?php endif ?>
 
 <?php require('../../template/footer.php') ?>

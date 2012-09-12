@@ -1,8 +1,5 @@
 <?php
 
-// Ensure that include path includes this project's lib directory
-set_include_path(get_include_path().PATH_SEPARATOR.__DIR__);
-
 // Load configuration settings
 require('../config/database.php');
 require('../config/security.php');
@@ -11,14 +8,15 @@ require('PasswordHash.php');
 require('Doctrine/Common/ClassLoader.php');
 
 // Load Doctrine classes
-$classLoader = new \Doctrine\Common\ClassLoader($ns='Doctrine', $includePath='/var/develwww/lib');
+$classLoader = new \Doctrine\Common\ClassLoader($ns='Doctrine', $includePath=__DIR__);
 $classLoader->register();
 
+// Load Symfony classes
 $symfonyLoader = new \Doctrine\Common\ClassLoader($nd='Symfony', $includePath=__DIR__.'/Doctrine');
 $symfonyLoader->register();
 
 // Load model classes
-$entityLoader = new \Doctrine\Common\ClassLoader($ns=null, $includePath=__DIR__.'/model/');
+$entityLoader = new \Doctrine\Common\ClassLoader($ns='rubikscomplex', $includePath=__DIR__);
 $entityLoader->register();
 
 use Doctrine\ORM\Configuration;

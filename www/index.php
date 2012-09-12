@@ -1,7 +1,7 @@
 <?php 
 require_once('../lib/bootstrap.php');
 
-$ur = $em->getRepository('User');
+$ur = $em->getRepository('\rubikscomplex\model\User');
 
 $pageTitle = 'Index Page'; 
 ?>
