@@ -4,8 +4,7 @@
 session_start();
 
 // Load configuration settings
-require('../config/database.php');
-require('../config/security.php');
+require('../config/config.php');
 
 require('PasswordHash.php');
 require('Doctrine/Common/ClassLoader.php');
@@ -30,12 +29,12 @@ use Doctrine\ORM\EntityManager;
 $config = new Configuration();
 
 $connectionParams = array(
-    'dbname'   => $databaseConfig['name'],
-    'user'     => $databaseConfig['user'],
-    'password' => $databaseConfig['pass'],
-    'host'     => $databaseConfig['host'],
-    'port'     => $databaseConfig['port'],
-    'driver'   => 'pdo_mysql',
+    'dbname'   => $appConfig['database']['name'],
+    'user'     => $appConfig['database']['user'],
+    'password' => $appConfig['database']['pass'],
+    'host'     => $appConfig['database']['host'],
+    'port'     => $appConfig['database']['port'],
+    'driver'   => $appConfig['database']['doctrine_driver'],
 );
 
 // Establish database connection and create entity manager
@@ -51,8 +50,8 @@ if (isset($_SESSION['userid'])) {
 
 // Password hasher
 $ph = new PasswordHash(
-    $phpassSettings['hash_cost_log2'], 
-    $phpassSettings['hash_portable']
+    $appConfig['phpass_hash_cost_log2'], 
+    $appConfig['phpass_hash_portable']
 );
 
 ?>

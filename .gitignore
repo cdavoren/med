@@ -5,6 +5,5 @@ www/pma
 *.swp
 
 # Contents of these files will be unique to each deployment
-config/database.php
-config/security.php
+config/config.php
 

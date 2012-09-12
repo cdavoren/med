@@ -1,0 +1,22 @@
+<?php
+
+// Application-wide settings
+$appSettings = array(
+
+  // Database connection settings
+  'database' => array(
+    'host' => 'localhost',
+    'port' => 3306,
+    'user' => 'user',
+    'pass' => 'pass',
+    'name' => 'none',
+    'doctrine_driver' => 'pdo_mysql',
+  ),
+
+  // PHPass settings
+  'phpass_hash_cost_log2' => 8,
+  'phpass_hash_portable'  => false,
+
+);
+
+?>
