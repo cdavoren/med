@@ -29,18 +29,19 @@ h1 {
 
 table.inputform {
     border: 0px solid black;
+    border-collapse: collapse;
+    border-spacing: 0px;
     color: inherit;
 }
 
 table.inputform td {
     border: 0px solid black;
-    padding: 1px 5px;
+    padding: 3px 5px;
     font-style: italic;
 }
 
 table.inputform tr {
     border: 0px solid black;
-    padding: 1px;
 }
 
 p.error {

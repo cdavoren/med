@@ -79,25 +79,69 @@ $fullname = isset($_POST['fullname']) ? $_POST['fullname'] : '';
 <form action="add.php" method="post">
 <table class="inputform">
 <tr>
-<td>Username:</td><td><input name="username" type="text" maxlength="60" value="<?php echo $username ?>"/></td>
+<td>Username:</td><td><input id="username" name="username" type="text" maxlength="60" value="<?php echo $username ?>"/></td>
+<td>
+  <div id="check" style="display: none;"><img style="vertical-align: bottom;" src="../images/ajax-loader.gif" />&nbsp;Checking if exists...</div>
+  <div id="available" style="display: none;">Available!</div>
+  <div id="unavailable" style="display: none;">Unavailable!</div>
+</td>
 </tr>
 <tr><td colspan="2">&nbsp;</td></tr>
 <tr>
-  <td>Password:</td><td><input name="password" type="password" maxlength="60" /></td>
+<td>Password:</td><td><input name="password" type="password" maxlength="60" /></td><td></td>
 </tr>
 <tr>
-  <td>Re-enter password:</td><td><input name="password2" type="password" maxlength="60" /></td>
+<td>Re-enter password:</td><td><input name="password2" type="password" maxlength="60" /></td><td></td>
 </tr>
 <tr><td colspan="2">&nbsp;</td></tr>
 <tr>
-<td>Email:</td><td><input name="email" type="text" maxlength="255" value="<?php echo $email ?>"/></td>
+<td>Email:</td><td><input name="email" type="text" maxlength="255" value="<?php echo $email ?>"/></td><td></td>
 </tr>
 <tr>
-<td>Full name:</td><td><input name="fullname" type="text" maxlength="255" value="<?php echo $fullname ?>"/></td>
+<td>Full name:</td><td><input name="fullname" type="text" maxlength="255" value="<?php echo $fullname ?>"/></td><td></td>
 </tr>
 </table>
 <input type="submit" name="submit" value="Add" />
 </form>
+<script type="text/javascript">
+function check_handler(data) {
+  // console.log('Exists: ' + data.exists);
+  $('div#check').css('display', 'none');
+  if (data.exists) {
+    $('div#unavailable').css('display', 'block');
+  }
+  else {
+    $('div#available').css('display', 'block');
+  }
+}
+
+function handler_error(jqXHR, textStatus, errorThrown) {
+  console.log(textStatus);
+  console.log(errorThrown);
+  alert('Unable to get username status from server.');
+  $('div#check').css('display', 'none');
+}
+
+function check_username(evt) {
+  console.log('Username changed...');
+  $('div#available').css('display', 'none');
+  $('div#unavailable').css('display', 'none');
+  $('div#check').css('display', 'block');
+  $.ajax({
+    type: 'POST',
+    dataType: 'json',
+    url: 'check_exists.php',
+    data: { username : $('input#username').val() },
+    success: check_handler,
+    error: handler_error,
+  });
+}
+
+$(document).ready(function() {
+  $('input#username').change(check_username);
+});
+</script>
+
 <?php else: ?>
 
 <h1>REGISTRATION SUCCESSFUL</h1>
