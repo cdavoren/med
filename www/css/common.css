@@ -47,3 +47,7 @@ table.inputform tr {
 p.error {
     color: #E00;
 }
+
+p.success {
+    color: #0E0;
+}

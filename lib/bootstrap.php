@@ -4,7 +4,7 @@
 session_start();
 
 // Load configuration settings
-require('../config/config.php');
+require(__DIR__.'/../config/config.php');
 
 require('PasswordHash.php');
 require('Doctrine/Common/ClassLoader.php');
