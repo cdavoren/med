@@ -51,3 +51,7 @@ p.error {
 p.success {
     color: #0E0;
 }
+
+p b {
+    color: white;
+}

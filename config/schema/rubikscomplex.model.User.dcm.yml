@@ -14,3 +14,8 @@ rubikscomplex\model\User:
     active:       { type: boolean, default: true }
     admin:        { type: boolean, default: false }
 
+  oneToMany:
+    password_reset_emails:
+      targetEntity: rubikscomplex\model\UserPasswordEmail
+      mappedBy: user
+      cascade: [ "delete" ]

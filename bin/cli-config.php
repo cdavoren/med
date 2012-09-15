@@ -10,21 +10,20 @@ use Doctrine\ORM\EntityManager,
     Doctrine\DBAL\DriverManager;
 
 
-require('../config/database.php');
-# require('../lib/entities/User.php');
+require('../config/config.php');
 
-$entityLoader = new \Doctrine\Common\ClassLoader($ns = null, $includePath = '../lib/entities');
+$entityLoader = new \Doctrine\Common\ClassLoader($ns = 'rubikscomplex', $includePath = '../lib');
 $entityLoader->register();
 
 # $config = new Configuration();
 
 $connectionParams = array(
-    'dbname'   => $databaseConfig['name'],
-    'user'     => $databaseConfig['user'],
-    'password' => $databaseConfig['pass'],
-    'host'     => $databaseConfig['host'],
-    'port'     => $databaseConfig['port'],
-    'driver'   => 'pdo_mysql',
+    'dbname'   => $appConfig["database"]['name'],
+    'user'     => $appConfig["database"]['user'],
+    'password' => $appConfig["database"]['pass'],
+    'host'     => $appConfig["database"]['host'],
+    'port'     => $appConfig["database"]['port'],
+    'driver'   => $appConfig["database"]['doctrine_driver'],
 );
 
 # $conn = DriverManager::getConnection($connectionParams, $config);

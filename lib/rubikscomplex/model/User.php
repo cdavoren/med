@@ -186,4 +186,35 @@ class User
     {
         return $this->admin;
     }
+    /**
+     * @var \Doctrine\Common\Collections\ArrayCollection
+     */
+    private $password_reset_emails;
+
+    public function __construct()
+    {
+        $this->password_reset_emails = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+    
+    /**
+     * Add password_reset_emails
+     *
+     * @param rubikscomplex\model\UserPasswordEmail $passwordResetEmails
+     * @return User
+     */
+    public function addUserPasswordEmail(\rubikscomplex\model\UserPasswordEmail $passwordResetEmails)
+    {
+        $this->password_reset_emails[] = $passwordResetEmails;
+        return $this;
+    }
+
+    /**
+     * Get password_reset_emails
+     *
+     * @return Doctrine\Common\Collections\Collection 
+     */
+    public function getPasswordResetEmails()
+    {
+        return $this->password_reset_emails;
+    }
 }
