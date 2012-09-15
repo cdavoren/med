@@ -536,6 +536,13 @@ class BasicEntityPersister
                     } else if ($targetClass->containsForeignIdentifier) {
                         $result[$owningTable][$sourceColumn] = $newValId[$targetClass->getFieldForColumn($targetColumn)];
                     } else {
+                        /*
+                        echo $owningTable."\n";
+                        echo $sourceColumn."\n";
+                        echo $targetColumn."\n";
+                        var_dump($targetClass->fieldNames);
+                        var_dump($newValId);
+                         */
                         $result[$owningTable][$sourceColumn] = $newValId[$targetClass->fieldNames[$targetColumn]];
                     }
 

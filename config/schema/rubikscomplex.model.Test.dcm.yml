@@ -1,0 +1,23 @@
+rubikscomplex\model\Test:
+  type: entity
+  table: tests
+  id:
+    id:
+      type: integer
+      generator:
+        strategy: AUTO
+
+  fields:
+    identifier:  { type: string, unique: true }
+    title:       { type: string, length: 255 }
+    description: { type: text }
+    year:        { type: integer }
+
+  oneToMany:
+    questions:
+      targetEntity: rubikscomplex\model\Question
+      mappedBy: question
+      cascade: [ "delete" ]
+      orderBy:
+        number: ASC
+
