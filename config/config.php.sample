@@ -1,7 +1,7 @@
 <?php
 
 // Application-wide settings
-$appSettings = array(
+$appConfig = array(
 
   // Database connection settings
   'database' => array(
