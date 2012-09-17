@@ -57,7 +57,7 @@ else {
 <?php
 if ($ur->findBy(array('username' => 'admin')) == null) {
   echo '<p>Admin user not found, creating...</p>';
-  $adminUser = new User();
+  $adminUser = new \rubikscomplex\model\User();
   $adminUser->setUsername('admin');
   $adminUser->setPasswordhash($ph->HashPassword('password'));
   $adminUser->setEmail('admin@rubikscomplex.net');
