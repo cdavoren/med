@@ -163,4 +163,31 @@ class Test
     {
         return $this->questions;
     }
+    /**
+     * @var rubikscomplex\model\TestGrouping
+     */
+    private $test_groupings;
+
+
+    /**
+     * Set test_groupings
+     *
+     * @param rubikscomplex\model\TestGrouping $testGroupings
+     * @return Test
+     */
+    public function setTestGroupings(\rubikscomplex\model\TestGrouping $testGroupings = null)
+    {
+        $this->test_groupings = $testGroupings;
+        return $this;
+    }
+
+    /**
+     * Get test_groupings
+     *
+     * @return rubikscomplex\model\TestGrouping 
+     */
+    public function getTestGroupings()
+    {
+        return $this->test_groupings;
+    }
 }

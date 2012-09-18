@@ -16,8 +16,11 @@ rubikscomplex\model\Test:
   oneToMany:
     questions:
       targetEntity: rubikscomplex\model\Question
-      mappedBy: question
-      cascade: [ "delete" ]
+      mappedBy: test
+      cascade: [ "all" ]
       orderBy:
         number: ASC
+    test_groupings:
+      targetEntity: TestGrouping
+      mappedBy: tests
 

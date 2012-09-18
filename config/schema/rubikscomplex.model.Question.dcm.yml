@@ -18,7 +18,7 @@ rubikscomplex\model\Question:
   oneToMany:
     answers:
       targetEntity: rubikscomplex\model\Answer
-      mappedBy: answer
+      mappedBy: question
       cascade: [ "delete" ]
 
   manyToOne:

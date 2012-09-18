@@ -7,3 +7,6 @@ www/pma/
 # Contents of these files will be unique to each deployment
 config/config.php
 
+# Backup files made by vim and doctrine orm:generate-entities
+*~
+

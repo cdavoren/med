@@ -17,5 +17,5 @@ rubikscomplex\model\User:
   oneToMany:
     password_reset_emails:
       targetEntity: rubikscomplex\model\UserPasswordEmail
-      mappedBy: user_password_email
-      cascade: [ "delete" ]
+      mappedBy: user
+      cascade: [ "all" ]

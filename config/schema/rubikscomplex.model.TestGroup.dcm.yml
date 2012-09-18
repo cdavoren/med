@@ -1,0 +1,16 @@
+rubikscomplex\model\TestGroup:
+  type: entity
+  table: test_groups
+  id:
+    id:
+      type: integer
+      generator: { strategy: AUTO }
+
+  fields:
+    name:        { type: string }
+    description: { type: text }
+
+  oneToMany:
+    test_groupings:
+      targetEntity: TestGrouping
+      mappedBy: test_groups

@@ -1,0 +1,17 @@
+rubikscomplex\model\TestGrouping:
+  type: entity
+  table: test_groupings
+  id:
+    id:
+      type: integer
+      generator: { strategy: AUTO }
+  fields:
+    position: { type: integer }
+
+  manyToOne:
+    tests:
+      targetEntity: Test
+      inversedBy: test_groupings
+    test_groups:
+      targetEntity: TestGroup
+      inversedBy: test_groupings
