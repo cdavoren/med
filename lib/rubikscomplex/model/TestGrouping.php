@@ -19,6 +19,16 @@ class TestGrouping
      */
     private $position;
 
+    /**
+     * @var rubikscomplex\model\Test
+     */
+    private $tests;
+
+    /**
+     * @var rubikscomplex\model\TestGroup
+     */
+    private $test_groups;
+
 
     /**
      * Get id
@@ -51,76 +61,6 @@ class TestGrouping
     {
         return $this->position;
     }
-    /**
-     * @var \Doctrine\Common\Collections\ArrayCollection
-     */
-    private $test_groups;
-
-    public function __construct()
-    {
-        $this->test_groups = new \Doctrine\Common\Collections\ArrayCollection();
-    }
-    
-    /**
-     * Add test_groups
-     *
-     * @param rubikscomplex\model\TestGroups $testGroups
-     * @return TestGrouping
-     */
-    public function addTestGroups(\rubikscomplex\model\TestGroups $testGroups)
-    {
-        $this->test_groups[] = $testGroups;
-        return $this;
-    }
-
-    /**
-     * Get test_groups
-     *
-     * @return Doctrine\Common\Collections\Collection 
-     */
-    public function getTestGroups()
-    {
-        return $this->test_groups;
-    }
-
-    /**
-     * Add test_groups
-     *
-     * @param rubikscomplex\model\TestGroup $testGroups
-     * @return TestGrouping
-     */
-    public function addTestGroup(\rubikscomplex\model\TestGroup $testGroups)
-    {
-        $this->test_groups[] = $testGroups;
-        return $this;
-    }
-    /**
-     * @var \Doctrine\Common\Collections\ArrayCollection
-     */
-    private $tests;
-
-
-    /**
-     * Add tests
-     *
-     * @param rubikscomplex\model\Test $tests
-     * @return TestGrouping
-     */
-    public function addTest(\rubikscomplex\model\Test $tests)
-    {
-        $this->tests[] = $tests;
-        return $this;
-    }
-
-    /**
-     * Get tests
-     *
-     * @return Doctrine\Common\Collections\Collection 
-     */
-    public function getTests()
-    {
-        return $this->tests;
-    }
 
     /**
      * Set tests
@@ -135,6 +75,16 @@ class TestGrouping
     }
 
     /**
+     * Get tests
+     *
+     * @return rubikscomplex\model\Test 
+     */
+    public function getTests()
+    {
+        return $this->tests;
+    }
+
+    /**
      * Set test_groups
      *
      * @param rubikscomplex\model\TestGroup $testGroups
@@ -144,5 +94,15 @@ class TestGrouping
     {
         $this->test_groups = $testGroups;
         return $this;
+    }
+
+    /**
+     * Get test_groups
+     *
+     * @return rubikscomplex\model\TestGroup 
+     */
+    public function getTestGroups()
+    {
+        return $this->test_groups;
     }
 }

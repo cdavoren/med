@@ -190,4 +190,16 @@ class Test
     {
         return $this->test_groupings;
     }
+
+    /**
+     * Add test_groupings
+     *
+     * @param rubikscomplex\model\TestGrouping $testGroupings
+     * @return Test
+     */
+    public function addTestGrouping(\rubikscomplex\model\TestGrouping $testGroupings)
+    {
+        $this->test_groupings[] = $testGroupings;
+        return $this;
+    }
 }
