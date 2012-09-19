@@ -2,6 +2,8 @@
 
 require_once('../lib/bootstrap.php');
 
+use rubikscomplex\util\UUID;
+
 $pageTitle = 'Create Test';
 require('../template/header.php');
 
@@ -25,7 +27,7 @@ $em->flush();
 
 // Now create some new data...
 $test = new \rubikscomplex\model\Test();
-$test->setIdentifier(uniqid());
+$test->setIdentifier(UUID.v4());
 $em->persist($test);
 
 $test->setTitle('Prototype Test');
@@ -40,7 +42,7 @@ for($i = 0; $i < 5; $i++) {
   $question->setPrompt('Question text for question '.($i+1).'.');
   $question->setExplanation('None.');
   $question->setAnswerType(0);
-  $question->setIdentifier(uniqid());
+  $question->setIdentifier(UUID.v4());
   $question->setCorrectAnswer(rand(0, 4));
 
   for($j = 0; $j < 5; $j++) {

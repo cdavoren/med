@@ -1,8 +1,8 @@
 <?php
-
 require_once('../../lib/bootstrap.php');
 
 $success = false;
+$error = null;
 
 if (isset($_SESSION['userid'])) {
   unset($_SESSION['userid']);
@@ -20,9 +20,15 @@ if (isset($_REQUEST['username']) && isset($_REQUEST['password'])) {
     if ($success) {
       $_SESSION['userid'] = $user->getId();
     }
+    else {
+      $error = 'Unknown username or password';
+    }
+  }
+  else {
+    $error = 'Unknown username or password';
   }
 }
 
 ?>
 <?php header('Content-Type: application/json; charset=utf-8') ?>
-{"success" : <?php echo $success ? 'true' : 'false' ?>}
+{"success" : <?php echo $success ? 'true' : 'false' ?>,"error":<?php echo $error === null ? 'null' : '"'.$error.'"' ?>}
