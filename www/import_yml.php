@@ -18,6 +18,14 @@ if (!isset($_REQUEST['filename'])) {
     printf('<p class="error">Error: No filename specified.</p>');
 }
 else {
+    if (isset($_REQUEST['clear'])) {
+        $em->createQueryBuilder()->delete('rubikscomplex\model\Answer')->getQuery()->execute();
+        $em->createQueryBuilder()->delete('rubikscomplex\model\Question')->getQuery()->execute();
+        $em->createQueryBuilder()->delete('rubikscomplex\model\TestGrouping')->getQuery()->execute();
+        $em->createQueryBuilder()->delete('rubikscomplex\model\Test')->getQuery()->execute();
+        $em->flush();
+    }
+
     $dir = isset($_REQUEST['dir']) ? $_REQUEST['dir'] : '';
     $filename = $dir.DIRECTORY_SEPARATOR.$_REQUEST['filename'];
 

@@ -54,7 +54,9 @@ class Importer {
             }
             else {
                 $debug['output'] .= sprintf('<p>Test group for subject already exists (%s, %d).</p>', $subjectGroup->getName(), $subjectGroup->getId());
-                $subjectGrouping = $em->getRepository('rubikscomplex\model\TestGrouping')->findOneBy(array('test_groups'=>$subjectGroup, 'tests'=>$test));
+                if ($em->contains($test)) {
+                    $subjectGrouping = $em->getRepository('rubikscomplex\model\TestGrouping')->findOneBy(array('test_groups'=>$subjectGroup, 'tests'=>$test));
+                }
             }
 
             if ($subjectGrouping === null) {
@@ -119,6 +121,7 @@ class Importer {
         if ($error === null) {
             // Commit new test to database
             $em->persist($test);
+            $em->flush();
             foreach ($questions as $question) {
                 $em->persist($question);
             }
@@ -127,6 +130,7 @@ class Importer {
             }
             if ($subjectGroup !== null) {
                 $em->persist($subjectGroup);
+                $em->flush();
             }
             if ($subjectGrouping !== null) {
                 $em->persist($subjectGrouping);
