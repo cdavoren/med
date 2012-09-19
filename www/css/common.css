@@ -9,22 +9,29 @@
 }
 
 html {
-    background-color: #444;
+    background-color: #000000;
     color: #CCC;
+    padding: 0px;
 }
 
 body {
     width: 1024px;
+    background-color: #323232;
     margin: 0px auto;
-    padding: 0;
+    /* Consider Roboto, Droid Sans, Georgia, Open Sans, PT Sans (Narrow) */
+    font-family: "Arial", "Verdana", "Arial", sans-serif;
+}
+
+div#content {
+    padding: 0px 20px;
 }
 
 h1 {
     font-family: "LeagueGothic", "Helvetica", "Verdana", "Arial", sans-serif;
     font-size: 52px;
     font-weight: normal;
-    color: #999;
-    border-bottom: 1px solid #CCC;
+    color: #f3f3f3;
+    border-bottom: 1px solid #bebebe;
 }
 
 table.inputform {
@@ -45,11 +52,13 @@ table.inputform tr {
 }
 
 p.error {
-    color: #E00;
+    /* color: #cc0000; */ /* Too dark; legible but not brighter red has better contrast */
+    color: #ff4444;
 }
 
 p.success {
-    color: #0E0;
+    /* color: #669900; */ /* Too dark; very muddy against dark background */
+    color: #99cc00;
 }
 
 p b {

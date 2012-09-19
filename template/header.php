@@ -17,3 +17,4 @@ if (!isset($pathPrefix)) {
 </style>
 </head>
 <body>
+<div id="content">
