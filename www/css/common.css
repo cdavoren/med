@@ -1,3 +1,5 @@
+@import url('fonts/roboto.css');
+
 @font-face {
     font-family: "LeagueGothic";
     src: url("fonts/League_Gothic-webfont.eot") format("embedded-opentype");
@@ -19,7 +21,8 @@ body {
     background-color: #323232;
     margin: 0px auto;
     /* Consider Roboto, Droid Sans, Georgia, Open Sans, PT Sans (Narrow) */
-    font-family: "Arial", "Verdana", "Arial", sans-serif;
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+    font-size: 12px;
 }
 
 div#content {
