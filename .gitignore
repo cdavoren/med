@@ -3,6 +3,7 @@ www/pma/
 
 # Ignore vim swap files, if present
 *.swp
+*.swo
 
 # Contents of these files will be unique to each deployment
 config/config.php
