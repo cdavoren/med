@@ -1,0 +1,63 @@
+@import '_android_holo.scss';
+@import 'fonts/league_gothic.scss';
+@import 'fonts/roboto.scss';
+
+html {
+    background-color: #000000;
+    color: $dim_foreground_holo_dark;
+    padding: 0px;
+}
+
+body {
+    width: 1024px;
+    background-color: $dim_foreground_holo_light;
+    margin: 0px auto;
+    /* Consider Roboto, Droid Sans, Georgia, Open Sans, PT Sans (Narrow) */
+    font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
+    font-size: 12px;
+    padding-top: 20px;
+}
+
+div#content {
+    padding: 0px 20px;
+}
+
+h1 {
+    font-family: 'LeagueGothic', 'Helvetica', 'Verdana', 'Arial', sans-serif;
+    font-size: 52px;
+    font-weight: normal;
+    color: $bright_foreground_holo_dark;
+    border-bottom: 1px solid $dim_foreground_holo_dark;
+    margin-top: 0px;
+}
+
+table.inputform {
+    border: 0px solid black;
+    border-collapse: collapse;
+    border-spacing: 0px;
+    color: inherit;
+}
+
+table.inputform td {
+    border: 0px solid black;
+    padding: 3px 5px;
+    font-style: italic;
+}
+
+table.inputform tr {
+    border: 0px solid black;
+}
+
+p.error {
+    /* color: #cc0000; */ /* Too dark; legible but not brighter red has better contrast */
+    color: $holo_red_light;
+}
+
+p.success {
+    /* color: #669900; */ /* Too dark; very muddy against dark background */
+    color: $holo_green_light;
+}
+
+p b {
+    color: white;
+}

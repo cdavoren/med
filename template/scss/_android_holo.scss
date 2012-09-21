@@ -1,0 +1,76 @@
+// Colours of the Android Holo theme.  This is the default theme for the Ice Cream Sandwich version of the Android OS.
+// The relevant XML file can be found on github at:
+// https://github.com/android/platform_frameworks_base/blob/master/core/res/res/values/colors.xml
+
+// For settings framework
+$lighter_gray: #ddd;
+$darker_gray: #aaa;
+
+// For search-related UIs 
+$search_url_text_normal: #7fa87f;
+$search_url_text_selected: #000000;
+$search_url_text_pressed: #000000;
+$search_widget_corpus_item_background: $lighter_gray;
+
+// General holo theme settings 
+$background_holo_dark: #000000;
+$background_holo_light: #f3f3f3;
+
+$bright_foreground_holo_dark: $background_holo_light;
+$bright_foreground_holo_light: $background_holo_dark;
+
+$bright_foreground_disabled_holo_dark: #4c4c4c;
+$bright_foreground_disabled_holo_light: #b2b2b2;
+
+$bright_foreground_inverse_holo_dark: $bright_foreground_holo_light;
+$bright_foreground_inverse_holo_light: $bright_foreground_holo_dark;
+
+$dim_foreground_holo_dark: #bebebe;
+$dim_foreground_disabled_holo_dark: rgba(128, 128, 128, 0.5); // #80bebebe 
+
+$dim_foreground_inverse_holo_dark: #323232;
+$dim_foreground_inverse_disabled_holo_dark: rgba(50, 50, 50, 0.5); // #80323232 
+
+$hint_foreground_holo_dark: #808080;
+
+$dim_foreground_holo_light: #323232;
+$dim_foreground_disabled_holo_light: rgba(50, 50, 50, 0.5); // #80323232 
+
+$dim_foreground_inverse_holo_light: #bebebe;
+$dim_foreground_inverse_disabled_holo_light: rgba(128, 128, 128, 0.5); // #80bebebe 
+
+$hint_foreground_holo_light: #808080;
+
+$highlighted_text_holo_dark: rgba(51, 181, 229, 0.4); // #6633b5e5 
+$highlighted_text_holo_light: rgba(51, 181, 229, 0.4); // #6633b5e5 
+
+$link_text_holo_dark: #5c5cff;
+$link_text_holo_light: #0000ee;
+
+// Group buttons 
+$group_buton_dialog_pressed_holo_dark: rgba(197, 193, 255, 0.28); // #46c5c1ff 
+$group_button_dialog_focused_holo_dark: rgba(153, 204, 0, 0.15); // #2699cc00 
+
+$group_button_dialog_pressed_holo_light: #ffffff;
+$group_button_dialog_focused_holo_light: rgba(153, 204, 0, 0.28); // #4699cc00 
+
+// Highlight colours for the legacy themes 
+$legacy_pressed_highlight: #feaa0c;
+$legacy_selected_highlight: #f17a0a;
+$legacy_long_pressed_highlight: #ffffff;
+
+// General-purpose colours for Holo-themed elements 
+$holo_blue_light: #33b5e5;
+$holo_green_light: #99cc00;
+$holo_red_light: #ff4444;
+$holo_blue_dark: #0099cc;
+$holo_green_dark: #669900;
+$holo_red_dark: #cc0000;
+$holo_purple: #aa66cc;
+$holo_orange_light: #ffbb33;
+$holo_orange_dark: #ff8800;
+$holo_blue_bright: #00ddff;
+
+// Notification template 
+$notification_template_icon_bg: rgba(51, 181, 229, 0.2); // #3333b5e5 
+$notification_template_icon_low_bg: rgba(255, 255, 255, 0.05); // #0cffffff 
