@@ -1,4 +1,5 @@
 @charset "UTF-8";
+/* common.css: generated from templates via SASS */
 @font-face {
   font-family: "LeagueGothic";
   src: url("fonts/League_Gothic-webfont.eot") format("embedded-opentype");
@@ -48,16 +49,33 @@ html {
   padding: 0px; }
 
 body {
-  width: 1024px;
-  background-color: #323232;
-  margin: 0px auto;
   /* Consider Roboto, Droid Sans, Georgia, Open Sans, PT Sans (Narrow) */
   font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
-  font-size: 12px;
-  padding-top: 20px; }
+  font-size: 12px; }
 
 div#content {
-  padding: 0px 20px; }
+  width: 984px;
+  margin: 0px auto;
+  padding: 0px 20px;
+  background-color: #323232;
+  padding-top: 20px;
+  padding-bottom: 20px; }
+
+a:link {
+  color: #0099cc;
+  text-decoration: none; }
+
+a:visited {
+  color: #004d66;
+  text-decoration: none; }
+
+a:hover {
+  color: #33b5e5;
+  text-decoration: underline; }
+
+a:active {
+  color: #33b5e5;
+  text-decoration: underline; }
 
 h1 {
   font-family: 'LeagueGothic', 'Helvetica', 'Verdana', 'Arial', sans-serif;
@@ -90,6 +108,40 @@ p.success {
   /* color: #669900; */
   /* Too dark; very muddy against dark background */
   color: #99cc00; }
+
+div#footer {
+  padding: 2px 5px;
+  border-top: 1px solid white; }
+
+div.footerinner {
+  width: 1024px;
+  margin: 0px auto; }
+
+div.footerlinks {
+  float: left;
+  width: 200px;
+  padding-top: 2px; }
+
+div.footerlogo {
+  float: right;
+  width: 400px;
+  text-align: right;
+  font-family: 'RobotoBoldCondensed', Arial, sans-serif;
+  font-size: 18px;
+  font-weight: normal;
+  font-style: normal; }
+
+div.footerclear {
+  clear: both; }
+
+span.logofirst {
+  color: #bebebe; }
+
+span.logosecond {
+  color: #33b5e5; }
+
+img.logoimg {
+  vertical-align: baseline; }
 
 p b {
   color: white; }

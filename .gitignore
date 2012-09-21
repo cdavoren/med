@@ -10,3 +10,6 @@ config/config.php
 # Backup files made by vim and doctrine orm:generate-entities
 *~
 
+# SASS cache directory
+template/scss/.sass-cache/
+

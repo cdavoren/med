@@ -1,6 +1,11 @@
+/* common.css: generated from templates via SASS */
+
 @import '_android_holo.scss';
 @import 'fonts/league_gothic.scss';
 @import 'fonts/roboto.scss';
+
+$body_width: 1024px;
+$body_padding: 20px;
 
 html {
     background-color: #000000;
@@ -9,18 +14,24 @@ html {
 }
 
 body {
-    width: 1024px;
-    background-color: $dim_foreground_holo_light;
-    margin: 0px auto;
     /* Consider Roboto, Droid Sans, Georgia, Open Sans, PT Sans (Narrow) */
     font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
     font-size: 12px;
-    padding-top: 20px;
 }
 
 div#content {
-    padding: 0px 20px;
+    width: $body_width - ($body_padding*2);
+    margin: 0px auto;
+    padding: 0px $body_padding;
+    background-color: $dim_foreground_holo_light;
+    padding-top: 20px;
+    padding-bottom: 20px;
 }
+
+a:link { color: $holo_blue_dark; text-decoration: none; }
+a:visited { color: darken($holo_blue_dark, 20%); text-decoration: none; }
+a:hover { color: $holo_blue_light; text-decoration: underline; }
+a:active { color: $holo_blue_light; text-decoration: underline; }
 
 h1 {
     font-family: 'LeagueGothic', 'Helvetica', 'Verdana', 'Arial', sans-serif;
@@ -57,6 +68,49 @@ p.success {
     /* color: #669900; */ /* Too dark; very muddy against dark background */
     color: $holo_green_light;
 }
+
+div#footer {
+    padding: 2px 5px;
+    border-top: 1px solid white;
+}
+
+div.footerinner {
+    width: $body_width;
+    margin: 0px auto;
+}
+
+div.footerlinks {
+    float: left;
+    width: 200px;
+    padding-top: 2px;
+}
+
+div.footerlogo {
+    float: right;
+    width: 400px;
+    text-align: right;
+    font-family: 'RobotoBoldCondensed', Arial, sans-serif;
+    font-size: 18px;
+    font-weight: normal;
+    font-style: normal;
+}
+
+div.footerclear {
+    clear: both;
+}
+
+span.logofirst {
+    color: #bebebe;
+}
+
+span.logosecond {
+    color: #33b5e5;
+}
+
+img.logoimg {
+    vertical-align: baseline;
+}
+
 
 p b {
     color: white;
