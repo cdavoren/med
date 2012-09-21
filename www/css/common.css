@@ -53,6 +53,12 @@ body {
   font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
   font-size: 12px; }
 
+em strong {
+  font-style: italic; }
+
+i strong {
+  font-style: italic; }
+
 div#content {
   width: 984px;
   margin: 0px auto;
@@ -108,6 +114,35 @@ p.success {
   /* color: #669900; */
   /* Too dark; very muddy against dark background */
   color: #99cc00; }
+
+div#header {
+  padding: 2px 5px;
+  border-bottom: 1px solid white; }
+
+div.headerinner {
+  width: 1024px;
+  margin: 0px auto; }
+
+div.headertitle {
+  float: left;
+  width: 300px;
+  font-size: 18px;
+  font-family: 'RobotoBoldCondensed', Helvetica, Arial, sans-serif; }
+
+div.headerwelcome {
+  float: right;
+  width: 700px;
+  text-align: right;
+  font-size: 12px;
+  padding: 2px 0px; }
+
+div.headerlogin {
+  float: right;
+  text-align: right;
+  width: 700px; }
+
+div.headerclear {
+  clear: both; }
 
 div#footer {
   padding: 2px 5px;
