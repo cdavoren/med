@@ -30,10 +30,10 @@ function validate() {
       $error = 'New password fields are not identical.';
     }
     else if (!$ph->CheckPassword($oldpassword, $loggedUser->getPasswordhash())) {
-        $error = 'Entered password is incorrect.';
+      $error = 'Entered password is incorrect.';
     }
-    return $error;
   }
+  return $error;
 }
 
 ?>
@@ -57,7 +57,9 @@ else {
     if ($error === null) {
       $loggedUser->setEmail(trim($email));
       $loggedUser->setFullname(trim($fullname));
-      if (isset($_REQUEST['newpassword'])) {
+      $oldpassword = trim($_REQUEST['oldpassword']);
+      $newpassword = trim($_REQUEST['newpassword']);
+      if (strlen($oldpassword) > 0) {
         $loggedUser->setPasswordhash($ph->HashPassword(trim($_REQUEST['newpassword'])));
       }
       $em->flush();

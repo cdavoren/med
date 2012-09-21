@@ -129,17 +129,34 @@ div.headertitle {
   font-size: 18px;
   font-family: 'RobotoBoldCondensed', Helvetica, Arial, sans-serif; }
 
-div.headerwelcome {
+div.headerright {
   float: right;
   width: 700px;
-  text-align: right;
+  text-align: right; }
+
+div.headerwelcome {
   font-size: 12px;
+  line-height: 24px;
   padding: 2px 0px; }
 
 div.headerlogin {
-  float: right;
-  text-align: right;
-  width: 700px; }
+  font-size: 12px;
+  line-height: 28px; }
+
+div#headerloading {
+  display: none;
+  font-size: 12px;
+  line-height: 24px;
+  color: #33b5e5; }
+
+div#headerloading img {
+  vertical-align: baseline; }
+
+div#headererror {
+  display: none;
+  font-size: 12px;
+  line-height: 24px;
+  color: #ff4444; }
 
 div.headerclear {
   clear: both; }
@@ -177,6 +194,32 @@ span.logosecond {
 
 img.logoimg {
   vertical-align: baseline; }
+
+input[type=text], input[type=password] {
+  width: 10em;
+  border-radius: 0px;
+  -moz-border-radius: 0px;
+  border: 1px solid #0099cc;
+  font-style: italic;
+  color: #4c4c4c; }
+
+.custombutton {
+  background-color: #0099cc;
+  color: white;
+  font-family: 'Roboto', Arial, sans-serif;
+  font-size: 9px;
+  height: 18px;
+  font-weight: bold;
+  border: 1px solid #bebebe;
+  border-radius: 2px;
+  -moz-border-radius: 2px;
+  padding-left: 10px;
+  padding-right: 10px;
+  vertical-align: baseline; }
+
+.custombutton:hover {
+  background-color: #33b5e5;
+  cursor: pointer; }
 
 p b {
   color: white; }

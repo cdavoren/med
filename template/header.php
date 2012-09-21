@@ -1,4 +1,5 @@
-<?php header('content-type: text/html; charset=utf-8') ?>
+<?php header('Content-type: text/html; charset=utf-8') ?>
+<?php header('Access-Control-Allow-Origin: http://ubuntu-vm') ?>
 <!DOCTYPE HTML>
 <?php
 if (!isset($pathPrefix)) {
@@ -16,6 +17,10 @@ if (!isset($pathPrefix)) {
 </style>
 <script type="text/javascript" src="<?php echo $pathPrefix ?>script/jquery-1.8.1.js"></script>
 <script type="text/javascript" src="<?php echo $pathPrefix ?>script/common.js"></script>
+<script type="text/javascript">
+$.session = {};
+$.session.sessionid='<?php echo session_id() ?>';
+</script>
 </head>
 <body>
 <div id="header">
@@ -23,19 +28,33 @@ if (!isset($pathPrefix)) {
 <div class="headertitle">
 
 </div>
-<div class="headerlogin" style="display: <?php echo $loggedUser === null ? 'block' : 'none' ?>">
-<form action="#" method="post">
-    <a href="#" title="Forgot password">Forgotten password</a> | <a href="#" title="Register">Register</a>&nbsp;
-    <input type="text" size="10" name="username" id="username" />
-    <input type="password" size="10" name="password" id="password" />
-    <input type="button" value="Login" id="loginbutton" onclick="login();"/>
-</form>
-</div>
-<div class="headerwelcome" style="display: <?php echo $loggedUser === null ? 'none' : 'block' ?>">
-<em>Welcome <strong><?php echo $loggedUser !== null ? $loggedUser->GetFullname() : '[not logged in]' ?></strong></em> | <a href="javascript:logout();" title="Logout">Logout</a>
+<div class="headerright">
+    <div class="headerlogin" style="display: <?php echo $loggedUser === null ? 'block' : 'none' ?>">
+    <form action="#" method="post">
+        <a href="#" title="Forgot password">Forgotten password</a> | <a href="#" title="Register">Register</a>&nbsp;
+        <input type="text" size="10" name="username" id="username" />&nbsp;
+        <input type="password" size="10" name="password" id="password" />&nbsp;
+        <input type="submit" class="custombutton" value="LOGIN" id="loginbutton"  />
+    </form>
+    </div>
+    <div class="headerwelcome" style="display: <?php echo $loggedUser === null ? 'none' : 'block' ?>">
+    <em>Welcome <strong><?php echo $loggedUser !== null ? $loggedUser->GetFullname() : '[not logged in]' ?></strong></em> | <a href="<?php echo $pathPrefix ?>user/profile.php" title="Profile">Profile</a> | <a href="#" title="Logout" id="logoutlink" >Logout</a>
+    </div>
+    <div id="headerloading">
+        <span id="headerstatus">[status message]</span><img src="<?php echo $pathPrefix ?>images/ajax-loader-bg-black.gif" alt="processing" />
+    </div>
+    <div id="headererror">
+        Error message.
+    </div>
 </div>
 <div class="headerclear">
 </div>
 </div>
+<script type="text/javascript">
+$(document).ready(function() { 
+    $('#loginbutton').click(login);
+    $('#logoutlink').click(logout);
+});
+</script>
 </div>
 <div id="content">
