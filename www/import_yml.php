@@ -1,5 +1,5 @@
 <?php
-require_once('../lib/bootstrap.php');
+require_once('../lib/init.php');
 
 use Symfony\Component\Yaml\Parser;
 use rubikscomplex\model\Test;
@@ -11,6 +11,8 @@ use rubikscomplex\util\Importer;
 
 $pageTitle = 'Import Test YML';
 include('../template/header.php');
+
+$em = App::getManager();
 
 printf('&nbsp;');
 printf('<h1>IMPORT TEST YML</h1>');

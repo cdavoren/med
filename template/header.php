@@ -3,8 +3,9 @@
 <!DOCTYPE HTML>
 <?php
 if (!isset($pathPrefix)) {
-    $pathPrefix = '';
+    $pathPrefix = App::getRelativeRootForPath();
 }
+$loggedUser = App::getUser();
 ?>
 <html>
 <head>

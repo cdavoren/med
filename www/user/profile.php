@@ -1,9 +1,12 @@
-<?php require_once('../../lib/bootstrap.php'); ?>
+<?php require_once('../../lib/init.php'); ?>
 <?php
 
 $pageTitle = 'Edit Profile';
-$pathPrefix = '../';
 require('../../template/header.php');
+
+$em = App::getManager();
+$loggedUser = App::getUser();
+$ph = App::getHasher();
 
 function validate() {
   global $loggedUser, $ph;

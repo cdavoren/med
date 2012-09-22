@@ -1,9 +1,12 @@
 <?php 
 
-require_once('../../lib/bootstrap.php');
+require_once('../../lib/init.php');
+
+$em = App::getManager();
+$ph = App::getHasher();
 
 function generatePassword() {
-  global $appConfig;
+  $appConfig = App::getConfiguration();
   $password = '';
   for ($i = 0; $i < $appConfig['generated_password_length']; $i++) {
     $class = rand(1, 3);
@@ -52,8 +55,6 @@ else {
 <?php
 
 $pageTitle = 'Password Reset';
-$pathPrefix = '../';
-
 include('../../template/header.php');
 
 ?>

@@ -1,9 +1,10 @@
 <?php
 
-require_once('../../lib/bootstrap.php');
+require_once('../../lib/init.php');
 
 $pageTitle = 'Registration';
-$pathPrefix = '../';
+$em = App::getManager();
+$ph = App::getHasher();
 
 function validate() {
   global $em;

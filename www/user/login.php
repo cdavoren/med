@@ -3,7 +3,9 @@ header('Content-Type: application/json; charset=utf-8');
 header('Access-Control-Allow-Credentials: true');
 header('Access-Control-Allow-Origin: '.(isset($_SERVER['HTTPS']) ? 'http' : 'https').'://ubuntu-vm');
 
-require_once('../../lib/bootstrap.php');
+require_once('../../lib/init.php');
+$em = App::getManager();
+$ph = App::getHasher();
 
 $result = array(
     'success' => false,

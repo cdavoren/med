@@ -1,7 +1,8 @@
 <?php
 header('Content-Type: application/json; charset=utf-8');
 
-require_once('../../lib/bootstrap.php');
+require_once('../../lib/init.php');
+$em = App::getManager();
 
 use \rubikscomplex\util\UUID;
 

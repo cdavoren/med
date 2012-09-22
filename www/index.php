@@ -1,5 +1,8 @@
 <?php 
-require_once('../lib/bootstrap.php');
+require_once('../lib/init.php');
+
+$em = App::getManager();
+$loggedUser = App::getUser();
 
 $ur = $em->getRepository('\rubikscomplex\model\User');
 
