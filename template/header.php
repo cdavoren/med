@@ -6,6 +6,7 @@ if (!isset($pathPrefix)) {
     $pathPrefix = App::getRelativeRootForPath();
 }
 $loggedUser = App::getUser();
+$config = App::getConfiguration();
 ?>
 <html>
 <head>
@@ -17,6 +18,12 @@ $loggedUser = App::getUser();
 <style>
 </style>
 <script type="text/javascript" src="<?php echo $pathPrefix ?>script/jquery-1.8.1.js"></script>
+<script type="text/javascript">
+$.appConfig = {};
+$.appConfig.app_server = '<?php echo $config['app_server'] ?>';
+$.appConfig.app_root = '<?php echo $config['app_root'] ?>';
+$.appConfig.ssl_enabled = <?php echo $config['ssl_enabled'] ?>;
+</script>
 <script type="text/javascript" src="<?php echo $pathPrefix ?>script/common.js"></script>
 <script type="text/javascript">
 $.session = {};

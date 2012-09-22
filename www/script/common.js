@@ -43,8 +43,15 @@ function login(evt) {
     $('#headerstatus').html('Logging in with username <em>'+username+'</em>...');
     $('div#headererror').css('display', 'none');
     $('div#headerloading').css('display', 'block');
+
+    var url = ($.appConfig.ssl_enabled ? 'https' : 'http') +
+        '://' + 
+        $.appConfig.app_server +
+        $.appConfig.app_root +
+        'user/login.php';
+
     var loginResult = $.ajax({
-        url: 'https://ubuntu-vm/user/login.php',
+        url: url,
         type: 'POST',
         dataType: 'json',
         data: { 'username' : username, 'password' : password },
@@ -65,8 +72,15 @@ function logout(evt) {
     $('#headerstatus').html('Logging out...');
     $('div#headererror').css('display', 'none');
     $('div#headerloading').css('display', 'block');
+
+    var url = ($.appConfig.ssl_enabled ? 'https' : 'http') +
+        '://' + 
+        $.appConfig.app_server +
+        $.appConfig.app_root +
+        'user/logout.php';
+
     var logoutResult = $.ajax({
-        url: 'https://ubuntu-vm/user/logout.php',
+        url: url,
         dataType: 'json',
         success: function(data) { console.log('Logout success.'); console.log(data); window.location.href = window.location.href; },
         error: function(jqXHR, textStatus, thrownError) { console.log('Logout failure.'); console.log(textStatus); console.log(thrownError); },

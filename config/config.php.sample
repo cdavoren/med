@@ -17,6 +17,12 @@ $appConfig = array(
   'phpass_hash_cost_log2' => 8,
   'phpass_hash_portable'  => false,
 
+  // Application path settings
+  'app_server' => 'mysite.com',
+  'app_root'   => '/',
+
+  // SSL settings
+  'ssl_enabled' => true,
 );
 
 ?>
