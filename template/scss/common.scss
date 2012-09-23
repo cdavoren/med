@@ -184,24 +184,49 @@ input[type=text],input[type=password] {
     color: $bright_foreground_disabled_holo_dark;
 }
 
+$normal_button_background: #474747;
+$normal_button_top_border: #858585;
+$normal_button_bottom_border: #343434;
+
+$selected_button_background: #1f5366;
+$selected_button_border: #037ea7;
+
+$pressed_button_background: #2c94bb;
+$pressed_button_border: #1f5366;
+
+$selected_disabled_button_background: #15252b;
+$selected_disabled_button_border: #0d323e;
+
 .custombutton {
-    background-color: $holo_blue_dark;
+    background-color: $normal_button_background;
+    border: 1px solid $normal_button_top_border;
+    /*
+    border-top: 1px solid $normal_button_top_border;
+    border-bottom: 1px solid $normal_button_bottom_border;
+    border-left: 1px solid $normal_button_background;
+    border-right: 1px solid $normal_button_background;
+    */
     color: white;
     font-family: 'Roboto', Arial, sans-serif;
-    font-size: 9px;
+    font-size: 10px;
     height: 18px;
     font-weight: bold;
-    border: 1px solid $dim_foreground_holo_dark;
-    border-radius: 2px;
-    -moz-border-radius: 2px;
     padding-left: 10px;
     padding-right: 10px;
     vertical-align: baseline;
 }
 
 .custombutton:hover {
-    background-color: $holo_blue_light;
+    background-color: $selected_button_background;
+    border: 1px solid $selected_button_border;
     cursor: pointer;
+}
+
+.custombutton:active {
+    background-color: $pressed_button_background;
+    border: 1px solid $pressed_button_border;
+    // border-radius: 2px;
+    // -moz-border-radius: 2px;
 }
 
 p b {

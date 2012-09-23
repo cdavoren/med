@@ -42,7 +42,7 @@ $.session.sessionid='<?php echo session_id() ?>';
         <a href="#" title="Forgot password">Forgotten password</a> | <a href="#" title="Register">Register</a>&nbsp;
         <input type="text" size="10" name="username" id="username" />&nbsp;
         <input type="password" size="10" name="password" id="password" />&nbsp;
-        <input type="submit" class="custombutton" value="LOGIN" id="loginbutton"  />
+        <input type="submit" class="custombutton" value="Login" id="loginbutton"  />
     </form>
     </div>
     <div class="headerwelcome" style="display: <?php echo $loggedUser === null ? 'none' : 'block' ?>">

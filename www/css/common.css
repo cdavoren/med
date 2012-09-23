@@ -204,22 +204,31 @@ input[type=text], input[type=password] {
   color: #4c4c4c; }
 
 .custombutton {
-  background-color: #0099cc;
+  background-color: #474747;
+  border: 1px solid #858585;
+  /*
+  border-top: 1px solid $normal_button_top_border;
+  border-bottom: 1px solid $normal_button_bottom_border;
+  border-left: 1px solid $normal_button_background;
+  border-right: 1px solid $normal_button_background;
+  */
   color: white;
   font-family: 'Roboto', Arial, sans-serif;
-  font-size: 9px;
+  font-size: 10px;
   height: 18px;
   font-weight: bold;
-  border: 1px solid #bebebe;
-  border-radius: 2px;
-  -moz-border-radius: 2px;
   padding-left: 10px;
   padding-right: 10px;
   vertical-align: baseline; }
 
 .custombutton:hover {
-  background-color: #33b5e5;
+  background-color: #1f5366;
+  border: 1px solid #037ea7;
   cursor: pointer; }
+
+.custombutton:active {
+  background-color: #2c94bb;
+  border: 1px solid #1f5366; }
 
 p b {
   color: white; }
