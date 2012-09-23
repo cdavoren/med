@@ -15,16 +15,8 @@ $config = App::getConfiguration();
 <?php endif; ?>
 <link rel="stylesheet" type="text/css" href="<?php echo $pathPrefix ?>css/yui-3.6.0-reset-fonts-base.css" />
 <link rel="stylesheet" type="text/css" href="<?php echo $pathPrefix ?>css/common.css" />
-<style>
-</style>
 <script type="text/javascript" src="<?php echo $pathPrefix ?>script/jquery-1.8.1.js"></script>
-<script type="text/javascript">
-$.appConfig = {};
-$.appConfig.app_server = '<?php echo $config['app_server'] ?>';
-$.appConfig.app_root = '<?php echo $config['app_root'] ?>';
-$.appConfig.ssl_enabled = <?php echo $config['ssl_enabled'] ?>;
-</script>
-<script type="text/javascript" src="<?php echo $pathPrefix ?>script/common.js"></script>
+<script type="text/javascript" src="<?php echo $pathPrefix ?>script/common.js.php"></script>
 <script type="text/javascript">
 $.session = {};
 $.session.sessionid='<?php echo session_id() ?>';

@@ -102,7 +102,7 @@ else {
 <td>Re-enter new password:</td><td><input name="newpassword2" type="password" size="60" value="" /></td>
 </tr>
 </table>
-<input name="submit" type="submit" value="Update my profile" />
+<input name="submit" type="submit" class="custombutton" value="Update my profile" />
 </form>
 
 <?php

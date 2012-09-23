@@ -12,5 +12,5 @@ config/config.php
 *~
 
 # SASS cache directory
-template/scss/.sass-cache/
+*.sass-cache/
 

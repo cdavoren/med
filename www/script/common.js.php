@@ -1,3 +1,8 @@
+<?php header('Content-Type: application/json; charset=utf-8') ?>
+<?php 
+require __DIR__.'/../../lib/init.php';
+$appConfig = App::getConfiguration(); 
+?>
 function loginSuccess(data) {
     console.log('Login success called.');
     console.log(data);
@@ -44,14 +49,8 @@ function login(evt) {
     $('div#headererror').css('display', 'none');
     $('div#headerloading').css('display', 'block');
 
-    var url = ($.appConfig.ssl_enabled ? 'https' : 'http') +
-        '://' + 
-        $.appConfig.app_server +
-        $.appConfig.app_root +
-        'user/login.php';
-
     var loginResult = $.ajax({
-        url: url,
+        url: '<?php echo ($appConfig['ssl_enabled'] ? 'https' : 'http').'://'.$appConfig['app_server'].$appConfig['app_root'].'user/login.php' ?>',
         type: 'POST',
         dataType: 'json',
         data: { 'username' : username, 'password' : password },
@@ -73,14 +72,8 @@ function logout(evt) {
     $('div#headererror').css('display', 'none');
     $('div#headerloading').css('display', 'block');
 
-    var url = ($.appConfig.ssl_enabled ? 'https' : 'http') +
-        '://' + 
-        $.appConfig.app_server +
-        $.appConfig.app_root +
-        'user/logout.php';
-
     var logoutResult = $.ajax({
-        url: url,
+        url: '<?php echo ($appConfig['ssl_enabled'] ? 'https' : 'http').'://'.$appConfig['app_server'].$appConfig['app_root'].'user/logout.php' ?>',
         dataType: 'json',
         success: function(data) { console.log('Logout success.'); console.log(data); window.location.href = window.location.href; },
         error: function(jqXHR, textStatus, thrownError) { console.log('Logout failure.'); console.log(textStatus); console.log(thrownError); },
