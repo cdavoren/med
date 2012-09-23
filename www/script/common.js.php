@@ -3,6 +3,7 @@
 require __DIR__.'/../../lib/init.php';
 $appConfig = App::getConfiguration(); 
 ?>
+$.support.cors = true;
 function loginSuccess(data) {
     console.log('Login success called.');
     console.log(data);
@@ -49,6 +50,7 @@ function login(evt) {
     $('div#headererror').css('display', 'none');
     $('div#headerloading').css('display', 'block');
 
+    $.support.cors = true;
     var loginResult = $.ajax({
         url: '<?php echo ($appConfig['ssl_enabled'] ? 'https' : 'http').'://'.$appConfig['app_server'].$appConfig['app_root'].'user/login.php' ?>',
         type: 'POST',
@@ -72,6 +74,7 @@ function logout(evt) {
     $('div#headererror').css('display', 'none');
     $('div#headerloading').css('display', 'block');
 
+    $.support.cors = true;
     var logoutResult = $.ajax({
         url: '<?php echo ($appConfig['ssl_enabled'] ? 'https' : 'http').'://'.$appConfig['app_server'].$appConfig['app_root'].'user/logout.php' ?>',
         dataType: 'json',
