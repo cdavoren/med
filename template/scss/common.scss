@@ -85,6 +85,7 @@ div#header {
 div.headerinner {
     width: $body_width;
     margin: 0px auto;
+    height: 56px;
 }
 
 div.headertitle {
@@ -92,6 +93,20 @@ div.headertitle {
     width: 300px;
     font-size: 18px;
     font-family: 'RobotoBoldCondensed', Helvetica, Arial, sans-serif;
+    line-height: 56px;
+}
+
+div.headertitle a:link,div.headertitle a:hover,div.headertitle a:visited,div.headertitle a:active {
+    text-decoration: none;
+    color: white;
+}
+
+img#headerlogo {
+    margin: 4px;
+    vertical-align: top;
+}
+
+div.headertitle span {
 }
 
 div.headerright {
@@ -180,6 +195,7 @@ input[type=text],input[type=password] {
     border-radius: 0px;
     -moz-border-radius: 0px;
     border: 1px solid $holo_blue_dark;
+    padding: 1px;
     font-style: italic;
     color: $bright_foreground_disabled_holo_dark;
 }

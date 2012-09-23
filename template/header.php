@@ -26,7 +26,10 @@ $.session.sessionid='<?php echo session_id() ?>';
 <div id="header">
 <div class="headerinner">
 <div class="headertitle">
-
+<a href="<?php echo $config['app_root']?>" title="Home">
+<img id="headerlogo" src="images/medtest_logo.png" alt="medtest" />
+<span>LE TESTER</span>
+</a>
 </div>
 <div class="headerright">
     <div class="headerlogin" style="display: <?php echo $loggedUser === null ? 'block' : 'none' ?>">
