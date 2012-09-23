@@ -3,22 +3,26 @@ header('Content-Type: application/json; charset=utf-8');
 
 require_once('../../lib/init.php');
 $em = App::getManager();
+$config = App::getConfiguration();
 
 use \rubikscomplex\util\UUID;
 
-$error = null;
+$result = array(
+    'success' => false,
+    'error' => null,
+);
 $text = null;
 
 $username = isset($_REQUEST['username']) ? trim($_REQUEST['username']) : null;
 
 
 if ($username === null) {
-  $error = 'No user specified';
+  $result['error'] = 'No user specified';
 }
 else {
   $user = $em->getRepository('rubikscomplex\model\User')->findOneBy(array('username'=>$username));
   if ($user === null) {
-    $error = 'Specified user does not exist';
+    $result['error'] = 'Specified user does not exist';
   }
   else {
     $token = UUID::v4();
@@ -48,18 +52,17 @@ This link will expire in 24 hours.
       $to = $user->getEmail(),
       $subject = 'Password Reset',
       $message = $text,
-      $additional_headers = 'From: admin@ubuntu-vm.com'
+      $additional_headers = 'From: '.$config['admin_email']
     );
 
     if (!$mailResult) {
-      $error = 'Error sending email to user.';
+      $result['error'] = 'Error sending email to user.';
+    }
+    else {
+        $result['success'] = true;
     }
   }
 }
 
-if ($error === null) {
-  ?>{"success":true,"text":"<?php echo $text ?>"}<?php
-}else {
-  ?>{"success":false,"message":"<?php echo $error ?>"}<?php
-}
+echo json_encode($result);
 ?>

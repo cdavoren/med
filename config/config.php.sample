@@ -23,6 +23,9 @@ $appConfig = array(
 
   // SSL settings
   'ssl_enabled' => true,
+
+  // Contacts
+  'admin_email' => 'admin@mysite.com',
 );
 
 ?>

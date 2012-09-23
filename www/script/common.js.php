@@ -11,9 +11,7 @@ function loginSuccess(data) {
         window.location.href = window.location.href;
     }
     else {
-        $('div#headerloading').css('display', 'none');
-        $('div#headererror').css('display', 'block');
-        $('div#headererror').html('Error: '+data.error);
+        displayLoginError('Error: '+data.error);
     }
 }
 
@@ -23,13 +21,11 @@ function loginFailure(jqXHR, textStatus, errorThrown) {
     console.log(textStatus);
     console.log(errorThrown);
 
-    $('div#headerloading').css('display', 'none');
-    $('div#headererror').css('display', 'block');
-    if (errorThrown !== undefined || errorThrown.length > 0) {
-        $('div#headererror').html('Error logging in: ['+textStatus+'] ' + errorThrown);
+    if (errorThrown === undefined || errorThrown.length == 0 || errorThrown == 'No Transport') {
+        displayLoginError('Error logging in (probable cross-site scripting error)');
     }
     else {
-        $('div#headererror').html('Error logging in (probable cross-site scripting error)');
+        displayLoginError('Error logging in: ['+textStatus+'] ' + errorThrown);
     }
 }
 
@@ -45,10 +41,7 @@ function login(evt) {
         $('div#headererror').html('Username and password cannot be blank');
         return false;
     }
-
-    $('#headerstatus').html('Logging in with username <em>'+username+'</em>...');
-    $('div#headererror').css('display', 'none');
-    $('div#headerloading').css('display', 'block');
+    displayLoginStatus('Logging in with username <em>'+username+'</em>...');
 
     $.support.cors = true;
     var loginResult = $.ajax({
@@ -70,9 +63,7 @@ function logout(evt) {
     if (evt !== undefined) {
         evt.preventDefault();
     }
-    $('#headerstatus').html('Logging out...');
-    $('div#headererror').css('display', 'none');
-    $('div#headerloading').css('display', 'block');
+    displayLoginStatus('Logging out...');
 
     $.support.cors = true;
     var logoutResult = $.ajax({
@@ -84,5 +75,60 @@ function logout(evt) {
             withCredentials: true,
         },
         crossDomain: true,
+    });
+}
+
+function displayLoginStatus(html) {
+    $('div#headererror').css('display', 'none');
+    $('#headerstatus').html(html);
+    $('div#headerloading').css('display', 'block');
+}
+
+function displayLoginError(html) {
+    $('div#headerloading').css('display', 'none');
+    $('div#headererror').html(html);
+    $('div#headererror').css('display', 'block');
+}
+
+function resetSuccess(data) {
+    if (data.success) {
+        displayLoginError('A password reset email has been sent for user <em>'+$('#username').val()+'</em>.');
+    }
+    else {
+        displayLoginError('Error: '+data.error);
+    }
+}
+
+function resetFailure(jqXHR, textStatus, errorThrown) {
+    console.log(jqXHR);
+    console.log('Status: '+textStatus);
+    console.log('Thrown error: '+errorThrown);
+    if (errorThrown === undefined || errorThrown.length == 0 || errorThrown == 'No Transport') {
+        displayLoginError('Error logging in (probable cross-site scripting error)');
+    }
+    else {
+        displayLoginError('Error logging in: ['+textStatus+'] ' + errorThrown);
+    }
+}
+
+function resetPassword(evt) {
+    if (evt !== undefined) {
+        evt.preventDefault();
+    }
+
+    var username = $('#username').val();
+
+    if (username.length == 0) {
+        displayLoginError('Enter a username to reset a forgotten password.');
+        return;
+    }
+    displayLoginStatus('Sending password reset email...');
+    $.ajax({
+        url: '<?php echo App::getRelativeRootForPath() ?>user/reset_password.php',
+        type: 'POST',
+        dataType: 'json',
+        data: { 'username' : username },
+        success: resetSuccess,
+        failure: resetFailure
     });
 }

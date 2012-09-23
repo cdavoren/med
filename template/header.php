@@ -27,14 +27,14 @@ $.session.sessionid='<?php echo session_id() ?>';
 <div class="headerinner">
 <div class="headertitle">
 <a href="<?php echo $config['app_root']?>" title="Home">
-<img id="headerlogo" src="images/medtest_logo.png" alt="medtest" />
+<img id="headerlogo" src="<?php echo $pathPrefix ?>images/medtest_logo.png" alt="medtest" />
 <span>LE TESTER</span>
 </a>
 </div>
 <div class="headerright">
     <div class="headerlogin" style="display: <?php echo $loggedUser === null ? 'block' : 'none' ?>">
     <form action="#" method="post">
-        <a href="#" title="Forgot password">Forgotten password</a> | <a href="#" title="Register">Register</a>&nbsp;
+        <a id="resetpasswordlink" href="#" title="Forgot password">Forgotten password</a> | <a href="<?php echo $pathPrefix ?>user/add.php" title="Register">Register</a>&nbsp;
         <input type="text" size="10" name="username" id="username" />&nbsp;
         <input type="password" size="10" name="password" id="password" />&nbsp;
         <input type="submit" class="custombutton" value="Login" id="loginbutton"  />
@@ -57,6 +57,7 @@ $.session.sessionid='<?php echo session_id() ?>';
 $(document).ready(function() { 
     $('#loginbutton').click(login);
     $('#logoutlink').click(logout);
+    $('#resetpasswordlink').click(resetPassword);
 });
 </script>
 </div>
