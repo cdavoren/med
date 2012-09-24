@@ -1,4 +1,5 @@
 # On the development machine, this directory contains a convenient symlink to PHPMyAdmin
+www/pma
 www/pma/
 
 # Ignore vim swap files, if present
