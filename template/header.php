@@ -7,6 +7,7 @@ if (!isset($pathPrefix)) {
 }
 $loggedUser = App::getUser();
 $config = App::getConfiguration();
+
 ?>
 <html>
 <head>
@@ -16,10 +17,18 @@ $config = App::getConfiguration();
 <link rel="stylesheet" type="text/css" href="<?php echo $pathPrefix ?>css/yui-3.6.0-reset-fonts-base.css" />
 <link rel="stylesheet" type="text/css" href="<?php echo $pathPrefix ?>css/common.css" />
 <script type="text/javascript" src="<?php echo $pathPrefix ?>script/jquery-1.8.1.js"></script>
-<script type="text/javascript" src="<?php echo $pathPrefix ?>script/common.js.php"></script>
+<script type="text/javascript" src="<?php echo $pathPrefix ?>script/jquery.cookie.js"></script>
+<script type="text/javascript" src="<?php echo $pathPrefix ?>script/common.js"></script>
 <script type="text/javascript">
-$.session = {};
-$.session.sessionid='<?php echo session_id() ?>';
+$.appConfig = {
+  ajax_domain : '<?php echo $config['app_server'].$config['app_root'] ?>',
+  current_origin : '<?php echo (isset($_SERVER['HTTPS']) ? 'https' : 'http').'://'.$config['app_server'].$config['app_root'] ?>',
+  <?php echo ($config['ssl_enabled'] ? ('https_endpoint : "https://'.$config['app_server'].$config['app_root'].'",') : '') ?> 
+<?php if ($loggedUser !== null) : ?>
+  user : '<?php echo $loggedUser->getUsername() ?>',
+  user_fullname : '<?php echo $loggedUser->getFullname() ?>',
+<?php endif ?>
+};
 </script>
 </head>
 <body>
@@ -28,12 +37,12 @@ $.session.sessionid='<?php echo session_id() ?>';
 <div class="headertitle">
 <a href="<?php echo $config['app_root']?>" title="Home">
 <img id="headerlogo" src="<?php echo $pathPrefix ?>images/medtest_logo.png" alt="medtest" />
-<span>LE TESTER</span>
+<span>MedTest</span>
 </a>
 </div>
 <div class="headerright">
     <div class="headerlogin" style="display: <?php echo $loggedUser === null ? 'block' : 'none' ?>">
-    <form action="#" method="post">
+    <form action="<?php echo ($config['ssl_enabled'] ? 'https' : 'http').'://'.$config['app_server'].$config['app_root'].'user/login.php' ?>" method="post" id="loginform">
         <a id="resetpasswordlink" href="#" title="Forgot password">Forgotten password</a> | <a href="<?php echo $pathPrefix ?>user/add.php" title="Register">Register</a>&nbsp;
         <input type="text" size="10" name="username" id="username" />&nbsp;
         <input type="password" size="10" name="password" id="password" />&nbsp;

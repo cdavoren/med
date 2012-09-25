@@ -1,9 +1,6 @@
 <?php
-header('Content-Type: application/json; charset=utf-8');
-header('Access-Control-Allow-Credentials: true');
-header('Access-Control-Allow-Origin: '.(isset($_SERVER['HTTPS']) ? 'http' : 'https').'://ubuntu-vm');
-
 require_once('../../lib/init.php');
+$config = App::getConfiguration();
 $em = App::getManager();
 $ph = App::getHasher();
 
@@ -36,6 +33,20 @@ if (isset($_REQUEST['username']) && isset($_REQUEST['password'])) {
 
 sleep(2);
 
-echo json_encode($result);
+if (isset($_REQUEST['cookie'])) {
+  setcookie($_REQUEST['cookie'], json_encode($result), 0, '/', '', false, false);
+  header('Content-Type: text/html');
+  header('Connection: close');
+  /*
+  header('Cache-Control:');
+  header('Pragma:');
+   */
+}
+else {
+  header('Content-Type: application/json; charset=utf-8');
+  header('Access-Control-Allow-Credentials: true');
+  header('Access-Control-Allow-Origin: '.(isset($_SERVER['HTTPS']) ? 'http' : 'https').'://'.$config['app_server']);
+  echo json_encode($result);
+}
 
 ?>
