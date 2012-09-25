@@ -2,6 +2,7 @@
 require_once('../lib/init.php');
 
 $em = App::getManager();
+$ph = App::getHasher();
 $loggedUser = App::getUser();
 
 $ur = $em->getRepository('\rubikscomplex\model\User');
