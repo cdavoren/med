@@ -4,7 +4,7 @@
 @import 'fonts/league_gothic.scss';
 @import 'fonts/roboto.scss';
 
-$body_width: 1024px;
+$body_width: 840px;
 $body_padding: 20px;
 
 html {
@@ -90,7 +90,7 @@ div.headerinner {
 
 div.headertitle {
     float: left;
-    width: 300px;
+    width: 150px;
     font-size: 18px;
     font-family: 'RobotoBoldCondensed', Helvetica, Arial, sans-serif;
     line-height: 56px;
@@ -111,7 +111,7 @@ div.headertitle span {
 
 div.headerright {
     float: right;
-    width: 700px;
+    width: 600px;
     text-align: right;
 }
 

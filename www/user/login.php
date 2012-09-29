@@ -43,7 +43,8 @@ if (isset($_REQUEST['cookie'])) {
    */
 }
 else {
-  header('Content-Type: application/json; charset=utf-8');
+  // header('Content-Type: application/json; charset=utf-8');
+  header('Content-Type: text/html; charset=utf-8');
   header('Access-Control-Allow-Credentials: true');
   header('Access-Control-Allow-Origin: '.(isset($_SERVER['HTTPS']) ? 'http' : 'https').'://'.$config['app_server']);
   echo json_encode($result);

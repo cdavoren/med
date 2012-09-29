@@ -32,7 +32,7 @@ function logout_handler(e) {
       console.log(reason);
       console.log(errorThrown);
       alert('An error occurred while logging out.  Please contact your system administrator.');
-    },
+    }
   });
   return false;
 }

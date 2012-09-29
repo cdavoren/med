@@ -22,11 +22,11 @@ $config = App::getConfiguration();
 <script type="text/javascript">
 $.appConfig = {
   ajax_domain : '<?php echo $config['app_server'].$config['app_root'] ?>',
-  current_origin : '<?php echo (isset($_SERVER['HTTPS']) ? 'https' : 'http').'://'.$config['app_server'].$config['app_root'] ?>',
-  <?php echo ($config['ssl_enabled'] ? ('https_endpoint : "https://'.$config['app_server'].$config['app_root'].'",') : '') ?> 
+  current_origin : '<?php echo (isset($_SERVER['HTTPS']) ? 'https' : 'http').'://'.$config['app_server'].$config['app_root'] ?>'
+  <?php echo ($config['ssl_enabled'] ? (',https_endpoint : "https://'.$config['app_server'].$config['app_root'].'"') : '') ?> 
 <?php if ($loggedUser !== null) : ?>
-  user : '<?php echo $loggedUser->getUsername() ?>',
-  user_fullname : '<?php echo $loggedUser->getFullname() ?>',
+  ,user : '<?php echo $loggedUser->getUsername() ?>',
+  user_fullname : '<?php echo $loggedUser->getFullname() ?>'
 <?php endif ?>
 };
 </script>
@@ -42,7 +42,8 @@ $.appConfig = {
 </div>
 <div class="headerright">
     <div class="headerlogin" style="display: <?php echo $loggedUser === null ? 'block' : 'none' ?>">
-    <form action="<?php echo ($config['ssl_enabled'] ? 'https' : 'http').'://'.$config['app_server'].$config['app_root'].'user/login.php' ?>" method="post" id="loginform">
+    <!-- <form action="<?php echo ($config['ssl_enabled'] ? 'https' : 'http').'://'.$config['app_server'].$config['app_root'].'user/login.php' ?>" method="post" id="loginform"> -->
+    <form action="javascript:void(0);" method="post" id="loginform">
         <a id="resetpasswordlink" href="#" title="Forgot password">Forgotten password</a> | <a href="<?php echo $pathPrefix ?>user/add.php" title="Register">Register</a>&nbsp;
         <input type="text" size="10" name="username" id="username" />&nbsp;
         <input type="password" size="10" name="password" id="password" />&nbsp;
@@ -63,10 +64,14 @@ $.appConfig = {
 </div>
 </div>
 <script type="text/javascript">
+test_function = function() {
+    console.log('Test output.');
+}
+
 $(document).ready(function() { 
     $('#loginbutton').click(login);
-    $('#logoutlink').click(logout);
-    $('#resetpasswordlink').click(resetPassword);
+    $('#logoutlink').click(test_function);
+    $('#resetpasswordlink').click(test_function);
 });
 </script>
 </div>

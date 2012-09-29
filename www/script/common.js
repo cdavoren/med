@@ -1,3 +1,18 @@
+(function() {
+"use strict";
+
+function displayLoginStatus(html) {
+    $('div#headererror').css('display', 'none');
+    $('#headerstatus').html(html);
+    $('div#headerloading').css('display', 'block');
+}
+
+function displayLoginError(html) {
+    $('div#headerloading').css('display', 'none');
+    $('div#headererror').html(html);
+    $('div#headererror').css('display', 'block');
+}
+
 function loginSuccess(data) {
     console.log('Login success called.');
     console.log(data);
@@ -23,7 +38,7 @@ function loginFailure(jqXHR, textStatus, errorThrown) {
     }
 }
 
-function login(evt) {
+login = function(evt) {
     if (evt !== undefined) {
         evt.preventDefault();
     }
@@ -63,7 +78,7 @@ function login(evt) {
         var iframe = $('<iframe>');
         var postForm = $('#loginform').clone(true);
         // var frameName = ('resp'+Math.random()).replace('.', '');
-        frameName = 'testframe';
+        var frameName = 'testframe';
         var cookieName = 'watch_login';
 
         iframe
@@ -91,7 +106,7 @@ function login(evt) {
             .appendTo(postForm);
 
         var interval = setInterval(function() {
-            data = $.cookie(cookieName);
+            var data = $.cookie(cookieName);
             console.log('data: '+data);
             console.log(cookieName);
             console.log(document.cookie);
@@ -135,7 +150,7 @@ function logoutError(jqXHR, textStatus, errorThrown) {
     }
 }
 
-function logout(evt) {
+logout = function(evt) {
     if (evt !== undefined) {
         evt.preventDefault();
     }
@@ -227,18 +242,6 @@ function logout(evt) {
     }
 }
 
-function displayLoginStatus(html) {
-    $('div#headererror').css('display', 'none');
-    $('#headerstatus').html(html);
-    $('div#headerloading').css('display', 'block');
-}
-
-function displayLoginError(html) {
-    $('div#headerloading').css('display', 'none');
-    $('div#headererror').html(html);
-    $('div#headererror').css('display', 'block');
-}
-
 function resetSuccess(data) {
     if (data.success) {
         displayLoginError('A password reset email has been sent for user <em>'+$('#username').val()+'</em>.');
@@ -281,3 +284,4 @@ function resetPassword(evt) {
         failure: resetFailure
     });
 }
+})();
