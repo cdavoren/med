@@ -2,6 +2,10 @@
 www/pma
 www/pma/
 
+# On the devel machine, this directory contains a symlink to the javascript cleanup tool JSLint
+www/jslint
+www/jslint/
+
 # Ignore vim swap files, if present
 *.swp
 *.swo
