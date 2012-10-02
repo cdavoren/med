@@ -70,8 +70,8 @@ test_function = function() {
 
 $(document).ready(function() { 
     $('#loginbutton').click(login);
-    $('#logoutlink').click(test_function);
-    $('#resetpasswordlink').click(test_function);
+    $('#logoutlink').click(logout);
+    $('#resetpasswordlink').click(resetPassword);
 });
 </script>
 </div>

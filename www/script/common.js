@@ -1,30 +1,36 @@
-(function() {
 "use strict";
 
-function displayLoginStatus(html) {
+if (console === undefined) {
+    var console = {};
+    console.log = function(msg) {
+    };
+};
+
+var displayLoginStatus = function (html) {
     $('div#headererror').css('display', 'none');
     $('#headerstatus').html(html);
     $('div#headerloading').css('display', 'block');
-}
+};
 
-function displayLoginError(html) {
+var displayLoginError = function(html) {
     $('div#headerloading').css('display', 'none');
     $('div#headererror').html(html);
     $('div#headererror').css('display', 'block');
-}
+};
 
-function loginSuccess(data) {
+var loginSuccess = function(data) {
     console.log('Login success called.');
     console.log(data);
     if (data.success) {
-        window.location.href = window.location.href;
+        console.log('Attempting to refresh window...');
+        location.reload();
     }
     else {
         displayLoginError('Error: '+data.error);
     }
-}
+};
 
-function loginFailure(jqXHR, textStatus, errorThrown) {
+var loginFailure = function(jqXHR, textStatus, errorThrown) {
     console.log('Login failure called.');
     // console.log(jqXHR);
     console.log(textStatus);
@@ -36,9 +42,21 @@ function loginFailure(jqXHR, textStatus, errorThrown) {
     else {
         displayLoginError('Error logging in: ['+textStatus+'] ' + errorThrown);
     }
-}
+};
 
-login = function(evt) {
+var logoutError = function(jqXHR, textStatus, errorThrown) {
+    console.log(jqXHR);
+    console.log('Status: '+textStatus);
+    console.log('Error: '+errorThrown);
+    if (errorThrown === undefined || errorThrown.length == 0 || errorThrown == 'No Transport' || errorThrown == 'Error: Access is denied.') {
+        displayLoginError('Error logging out (access is denied)');
+    }
+    else {
+        displayLoginError('Error logging out: ['+textStatus+'] '+errorThrown);
+    }
+};
+
+function login(evt) {
     if (evt !== undefined) {
         evt.preventDefault();
     }
@@ -68,9 +86,9 @@ login = function(evt) {
             success: loginSuccess,
             error: loginFailure,
             xhrFields: {
-                withCredentials: true,
+                withCredentials: true
             },
-            crossDomain: endpoint != current_origin,
+            crossDomain: endpoint != current_origin
         });
     }
     else {
@@ -101,7 +119,7 @@ login = function(evt) {
             .attr({
                 type: 'hidden',
                 name: 'cookie',
-                value: cookieName,
+                value: cookieName
             })
             .appendTo(postForm);
 
@@ -124,7 +142,7 @@ login = function(evt) {
                 postForm.remove();
                 iframe.remove();
                 if (data.success) {
-                    window.location.href = window.location.href;
+                    location.reload();
                 }
                 else {
                     displayLoginError('Error: '+data.error);
@@ -136,21 +154,9 @@ login = function(evt) {
     }
 
     return false;
-}
+};
 
-function logoutError(jqXHR, textStatus, errorThrown) {
-    console.log(jqXHR);
-    console.log('Status: '+textStatus);
-    console.log('Error: '+errorThrown);
-    if (errorThrown === undefined || errorThrown.length == 0 || errorThrown == 'No Transport' || errorThrown == 'Error: Access is denied.') {
-        displayLoginError('Error logging out (access is denied)');
-    }
-    else {
-        displayLoginError('Error logging out: ['+textStatus+'] '+errorThrown);
-    }
-}
-
-logout = function(evt) {
+var logout = function(evt) {
     if (evt !== undefined) {
         evt.preventDefault();
     }
@@ -170,13 +176,13 @@ logout = function(evt) {
             success: function(data) { 
                 console.log('Logout success.'); 
                 console.log(data); 
-                window.location.href = window.location.href; 
+                location.reload();
             },
             error: logoutError,
             xhrFields: {
-                withCredentials: true,
+                withCredentials: true
             },
-            crossDomain: endpoint != current_origin,
+            crossDomain: endpoint != current_origin
         });
     }
     else {
@@ -207,7 +213,7 @@ logout = function(evt) {
             .attr({
                 type: 'hidden',
                 name: 'cookie',
-                value: cookieName,
+                value: cookieName
             })
             .appendTo(postForm);
 
@@ -230,7 +236,7 @@ logout = function(evt) {
                 postForm.remove();
                 iframe.remove();
                 if (data.success) {
-                    window.location.href = window.location.href;
+                    location.reload();
                 }
                 else {
                     displayLoginError('Error: '+data.error);
@@ -240,18 +246,18 @@ logout = function(evt) {
 
         postForm.submit();
     }
-}
+};
 
-function resetSuccess(data) {
+var resetSuccess = function(data) {
     if (data.success) {
         displayLoginError('A password reset email has been sent for user <em>'+$('#username').val()+'</em>.');
     }
     else {
         displayLoginError('Error: '+data.error);
     }
-}
+};
 
-function resetFailure(jqXHR, textStatus, errorThrown) {
+var resetFailure = function(jqXHR, textStatus, errorThrown) {
     console.log(jqXHR);
     console.log('Status: '+textStatus);
     console.log('Thrown error: '+errorThrown);
@@ -261,9 +267,9 @@ function resetFailure(jqXHR, textStatus, errorThrown) {
     else {
         displayLoginError('Error logging in: ['+textStatus+'] ' + errorThrown);
     }
-}
+};
 
-function resetPassword(evt) {
+var resetPassword = function(evt) {
     if (evt !== undefined) {
         evt.preventDefault();
     }
@@ -283,5 +289,4 @@ function resetPassword(evt) {
         success: resetSuccess,
         failure: resetFailure
     });
-}
-})();
+};
