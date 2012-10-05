@@ -248,7 +248,8 @@ var logout = function(evt) {
     }
 };
 
-var resetSuccess = function(data) {
+function resetSuccess(data) {
+	console.log('Reset success called.');
     if (data.success) {
         displayLoginError('A password reset email has been sent for user <em>'+$('#username').val()+'</em>.');
     }
@@ -281,12 +282,13 @@ var resetPassword = function(evt) {
         return;
     }
     displayLoginStatus('Sending password reset email...');
+    var endpoint = 'http://'+$.appConfig.ajax_domain;
     $.ajax({
-        url: '<?php echo App::getRelativeRootForPath() ?>user/reset_password.php',
+        url: endpoint+'user/reset_password.php',
         type: 'POST',
         dataType: 'json',
         data: { 'username' : username },
         success: resetSuccess,
-        failure: resetFailure
+        error: resetFailure
     });
 };

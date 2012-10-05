@@ -55,11 +55,11 @@ This link will expire in 24 hours.
       $additional_headers = 'From: '.$config['admin_email']
     );
 
-    if (!$mailResult) {
+    if ($mailResult !== true) {
       $result['error'] = 'Error sending email to user.';
     }
     else {
-        $result['success'] = true;
+      $result['success'] = true;
     }
   }
 }
