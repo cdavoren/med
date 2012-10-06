@@ -17,6 +17,25 @@ $em = App::getManager();
 printf('&nbsp;');
 printf('<h1>IMPORT TEST YML</h1>');
 
+$groupDescriptions = array(
+    'HP3' => 'Health Practice 3',
+    'HP4' => 'Health Practice 4',
+    'HP5' => 'Health Practice 5',
+    'CRL' => 'Cardiac, Respiratory and Locomotor',
+    'CSGD' => 'Control Systems and Development',
+    'DMF' => 'Defense Mechanisms and their Failure',
+    'SEM8_9' => 'Semesters 8 and 9',
+    'SEM8_9_BLOCK1' => 'Cardiology, Respiratory and General Medicine',
+    'SEM8_9_BLOCK2' => 'Neurosurgery, Neurology, ENT and Ophthalmology',
+    'SEM8_9_BLOCK3' => 'Nephtology, Urology, Vascular Surgery and Endocrinology',
+    'SEM8_9_BLOCK4' => 'Orthopaedics, Rheumatology and Dermatology',
+    'SEM8_9_BLOCK5' => 'Oncology, Haematology and Infections Disease',
+    'SEM8_9_BLOCK6' => 'Gastroenterology, Hepatobiliary and Colorectal Surgery',
+    'SEM10_11' => 'Semesters 10 and 11',
+    'SEM10_11_PAED' => 'Paediatrics',
+    'SEM10_11_OBGYN' => 'Obstetrics and Gynaecology'
+);
+
 if (!isset($_REQUEST['filename']) && !isset($_REQUEST['dir'])) {
     printf('<p class="error">Error: No filename or directory specified.</p>');
 }
@@ -26,6 +45,7 @@ else {
         $em->createQueryBuilder()->delete('rubikscomplex\model\Question')->getQuery()->execute();
         $em->createQueryBuilder()->delete('rubikscomplex\model\TestGrouping')->getQuery()->execute();
         $em->createQueryBuilder()->delete('rubikscomplex\model\Test')->getQuery()->execute();
+        $em->createQueryBuilder()->delete('rubikscomplex\model\TestGroup')->getQuery()->execute();
         $em->flush();
     }
 
@@ -44,7 +64,14 @@ else {
 
     foreach ($filenames as $filename) {
         printf('<p>Parsing %s...</p>', $filename);
-        $error = Importer::importYML($filename, $em, $debug);
+        $error = null;
+        try {
+            $error = Importer::importYML($filename, $em, $debug, $groupDescriptions);
+        }
+        catch (Exception $e) {
+            printf('<p>Exception caught parsing file %s: <pre>%s</pre></p>%s', $filename, $e->getMessage(), $debug['output']);
+            break;
+        }
 
         if ($error !== null) {
             printf('<p class="error">Error importing file <i>\'%s\'</i>: %s</p>', $filename, $error);
