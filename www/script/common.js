@@ -142,3 +142,67 @@ function resetPasswordSubmit(evt) {
         error: function(jqXHR, errorThrown, message) { console.log(errorThrown), console.log(message); }
     });
 }
+
+function testSubmitSuccess(testData, correctData) {
+    // console.log(testData);
+    // console.log(correctData);
+
+    var html = '',
+        questionsShown = $('input[name^="question_shown_"]'),
+        questionAnswers = $('input[name^="question_answer_"]');
+
+    var answers = {};
+    $.each(testData, function(index, value) {
+        // console.log(value.name);
+        if (value.name.match(/^question_answer_/)) {
+            // console.log(value);
+            answers[value.name.substr('question_answer_'.length)] = value.value;
+        }
+    });
+
+    // console.log(answers);
+
+    var numCorrect = 0;
+
+    questionsShown.each(function(index, value) {
+        var qid = $(value).attr('name').substring('question_shown_'.length);
+        // console.log(qid+': '+answers[qid]+'/'+correctData[qid].correct_answer);
+        if (answers[qid] !== undefined && correctData[qid].correct_answer == answers[qid]) {
+            html += 'Q'+correctData[qid].number+' correct: '+answers[qid]+'<br />';
+            numCorrect++;
+        }
+        else {
+            html += 'Q'+correctData[qid].number+' incorrect: ('+
+                (answers[qid] === undefined ? 'no answer' : answers[qid]) +
+                ' / '+correctData[qid].correct_answer+')<br />';
+        }
+    });
+
+    html = 'Number correct: '+numCorrect+'/'+questionsShown.length+'<br />'+html;
+
+    $('div#results').html(html);
+}
+
+function testSubmitError(jqXHR, errorThrown, message) {
+    console.log(errorThrown);
+    console.log(message);
+}
+
+function testSubmit(testData, testForm, options) {
+    console.log('Mark test.');
+
+    $.ajax({
+        url: $.appConfig.currentOrigin+'take_test.php',
+        type: 'post',
+        dataType: 'json',
+        data: {
+            id: $('#test_id').val(),
+            correct_only: 'true'
+        },
+        success: function(data) { testSubmitSuccess(testData, data); },
+        error: testSubmitError
+    });
+
+    return false;
+}
+
