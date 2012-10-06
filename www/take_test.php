@@ -58,22 +58,21 @@ else {
 
 <form action="#" method="post" id="testform">
 <p><i><?php echo count($questions) ?> question(s)</i></p>
+<p><?php echo get_class($questions) ?></p>
 
 <input type="hidden" id="test_id" name="test_id" value="<?php echo $test->getId() ?>" />
 
-<?php foreach($questions as $i => $question): ?>
+<?php foreach($questions->slice($startIndex, $endIndex-$startIndex) as $i => $question): ?>
 
-  <?php if ($i >= $startIndex && $i < $endIndex): ?>
     <input type="hidden" name="question_shown_<?php echo $question->getId() ?>" value="<?php echo $question->getNumber() ?>" />
     <h3>Q<?php echo $question->getNumber() ?></h3>
-    <p><?php echo $question->getPrompt() ?></p>
+    <p><?php echo str_replace("\n\n",'<br />', $question->getPrompt()) ?></p>
 
     <?php foreach($question->getAnswers() as $answer): ?>
 
       <p style="margin: 0.3em 0px;"><input type="radio" name="question_answer_<?php echo $question->getId() ?>" value="<?php echo $answer->getQuestionIndex() ?>" />&nbsp;&nbsp;<?php echo $answer->getQuestionIndex() ?>.&nbsp;&nbsp;<?php echo $answer->getText() ?></p>
       
     <?php endforeach ?>
-  <?php endif ?>
 <?php endforeach ?>
 <br />
 <input type="submit" name="submit" id="test_submit" value="Mark" />
