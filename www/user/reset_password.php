@@ -15,11 +15,12 @@ $text = null;
 
 $username = isset($_REQUEST['username']) ? trim($_REQUEST['username']) : null;
 
-
 if ($username === null) {
   $result['error'] = 'No user specified';
 }
 else {
+  $result['username'] = $username;
+
   $user = $em->getRepository('rubikscomplex\model\User')->findOneBy(array('username'=>$username));
   if ($user === null) {
     $result['error'] = 'Specified user does not exist';

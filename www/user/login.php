@@ -36,11 +36,15 @@ sleep(2);
 if (isset($_REQUEST['cookie'])) {
   setcookie($_REQUEST['cookie'], json_encode($result), 0, '/', '', false, false);
   header('Content-Type: text/html');
-  header('Connection: close');
+  // header('Connection: close');
   /*
   header('Cache-Control:');
   header('Pragma:');
    */
+
+  for($i = 0; $i < 1024; $i++) {
+    echo ' ';
+  }
 }
 else {
   // header('Content-Type: application/json; charset=utf-8');

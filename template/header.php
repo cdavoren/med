@@ -8,6 +8,15 @@ if (!isset($pathPrefix)) {
 $loggedUser = App::getUser();
 $config = App::getConfiguration();
 
+$confJS = array();
+$confJS['ajaxDomain'] = $config['app_server'].$config['app_root'];
+$confJS['currentOrigin'] = (isset($_SERVER['HTTPS']) ? 'https' : 'http').'://'.$confJS['ajaxDomain'];
+$confJS['secureEndpoint'] = ($config['ssl_enabled'] ? 'https' : 'http').'://'.$confJS['ajaxDomain'];
+if ($loggedUser !== null) {
+  $confJS['user'] = $loggedUser->getUsername();
+  $confJS['userFullname'] = $loggedUser->getFullname();
+}
+
 ?>
 <html>
 <head>
@@ -18,17 +27,10 @@ $config = App::getConfiguration();
 <link rel="stylesheet" type="text/css" href="<?php echo $pathPrefix ?>css/common.css" />
 <script type="text/javascript" src="<?php echo $pathPrefix ?>script/jquery-1.8.1.js"></script>
 <script type="text/javascript" src="<?php echo $pathPrefix ?>script/jquery.cookie.js"></script>
+<script type="text/javascript" src="<?php echo $pathPrefix ?>script/jquery.form.js"></script>
 <script type="text/javascript" src="<?php echo $pathPrefix ?>script/common.js"></script>
 <script type="text/javascript">
-$.appConfig = {
-  ajax_domain : '<?php echo $config['app_server'].$config['app_root'] ?>',
-  current_origin : '<?php echo (isset($_SERVER['HTTPS']) ? 'https' : 'http').'://'.$config['app_server'].$config['app_root'] ?>'
-  <?php echo ($config['ssl_enabled'] ? (',https_endpoint : "https://'.$config['app_server'].$config['app_root'].'"') : '') ?> 
-<?php if ($loggedUser !== null) : ?>
-  ,user : '<?php echo $loggedUser->getUsername() ?>',
-  user_fullname : '<?php echo $loggedUser->getFullname() ?>'
-<?php endif ?>
-};
+$.appConfig = <?php echo json_encode($confJS) ?>;
 </script>
 </head>
 <body>
@@ -42,8 +44,7 @@ $.appConfig = {
 </div>
 <div class="headerright">
     <div class="headerlogin" style="display: <?php echo $loggedUser === null ? 'block' : 'none' ?>">
-    <!-- <form action="<?php echo ($config['ssl_enabled'] ? 'https' : 'http').'://'.$config['app_server'].$config['app_root'].'user/login.php' ?>" method="post" id="loginform"> -->
-    <form action="javascript:void(0);" method="post" id="loginform">
+    <form action="<?php echo $confJS['secureEndpoint'].'user/login.php' ?>" method="post" id="loginform">
         <a id="resetpasswordlink" href="#" title="Forgot password">Forgotten password</a> | <a href="<?php echo $pathPrefix ?>user/add.php" title="Register">Register</a>&nbsp;
         <input type="text" size="10" name="username" id="username" />&nbsp;
         <input type="password" size="10" name="password" id="password" />&nbsp;
@@ -64,14 +65,10 @@ $.appConfig = {
 </div>
 </div>
 <script type="text/javascript">
-test_function = function() {
-    console.log('Test output.');
-}
-
 $(document).ready(function() { 
-    $('#loginbutton').click(login);
-    $('#logoutlink').click(logout);
-    $('#resetpasswordlink').click(resetPassword);
+    $('#loginform').ajaxForm({beforeSubmit: loginSubmit});
+    $('#logoutlink').click(logoutSubmit);
+    $('#resetpasswordlink').click(resetPasswordSubmit);
 });
 </script>
 </div>
