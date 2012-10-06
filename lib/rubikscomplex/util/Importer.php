@@ -18,6 +18,9 @@ class Importer {
         $questions = array();
         $answers = array();
 
+        $subjectGroups = array();
+        $subjectGroupings = array();
+
         if ($debug === null) {
             $debug = array();
         }
@@ -45,7 +48,10 @@ class Importer {
 
         if ($value['test']['subjects'] !== null) {
             foreach($value['test']['subjects'] as $subjectGroupName) {
+                $subjectGrouping = null;
+                $debug['output'] .= sprintf('<p>For test "%s" found group id "%s"</p>', $value['test']['title'], $subjectGroupName);
                 $subjectGroup = $em->getRepository('rubikscomplex\model\TestGroup')->findOneBy(array('name'=>$subjectGroupName));
+
                 if ($subjectGroup === null) {
                     $debug['output'] .= sprintf('<p>Had to create new test group for subject (%s).</p>', $subjectGroupName);
                     $subjectGroup = new TestGroup();
@@ -65,6 +71,8 @@ class Importer {
                     }
                 }
 
+                $subjectGroups[] = $subjectGroup;
+
                 if ($subjectGrouping === null) {
                     $debug['output'] .= sprintf('<p>Had to create new test grouping for subject (%s).</p>', $subjectGroupName);
                     $maxpos = 0;
@@ -79,6 +87,7 @@ class Importer {
                     $subjectGrouping->setTests($test);
                     $subjectGrouping->setTestGroups($subjectGroup);
                     $subjectGrouping->setPosition($maxpos+1);
+                    $subjectGroupings[] = $subjectGrouping;
                 }
                 else {
                     $debug['output'] .= sprintf('<p>Test grouping for subject and test already exists (%s, %d).</p>', $subjectGroupName, $subjectGrouping->getId());
@@ -138,11 +147,11 @@ class Importer {
             foreach ($answers as $answer) {
                 $em->persist($answer);
             }
-            if ($subjectGroup !== null) {
+            foreach ($subjectGroups as $subjectGroup) {
                 $em->persist($subjectGroup);
                 $em->flush();
             }
-            if ($subjectGrouping !== null) {
+            foreach ($subjectGroupings as $subjectGrouping) {
                 $em->persist($subjectGrouping);
             }
             $em->flush();
