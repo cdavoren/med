@@ -6,6 +6,8 @@ $ph = App::getHasher();
 $loggedUser = App::getUser();
 
 $ur = $em->getRepository('\rubikscomplex\model\User');
+$tgr = $em->getRepository('\rubikscomplex\model\TestGroup');
+$tr = $em->getRepository('\rubikscomplex\model\Test');
 
 $pageTitle = 'Index Page'; 
 ?>
@@ -84,5 +86,25 @@ User information:<br />
 <?php else : ?>
   No users found.<br />
 <?php endif ?>
+</p>
 
+<p>
+Test information:<br />
+
+<ul>
+<?php foreach($tgr->findAll() as $testGroup): ?>
+
+  <li>
+    <?php echo $testGroup->getDescription() ?> <i>(<?php echo $testGroup->getName() ?>)</i>
+    <ul>
+      <?php foreach($testGroup->getTestGroupings() as $tgr): ?>
+        <li><a href="take_test.php?id=<?php echo $tgr->getTests()->getId() ?>&page=1" title="<?php echo $tgr->getTests()->getTitle() ?>"><?php echo $tgr->getTests()->getTitle() ?></a></li>
+      <?php endforeach ?>
+    </ul>
+  </li>
+
+<?php endforeach ?>
+</ul>
+
+</p>
 <?php require_once('../template/footer.php'); ?>
