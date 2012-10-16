@@ -37,7 +37,7 @@ div#content {
 }
 
 a:link { color: $holo_blue_dark; text-decoration: none; }
-a:visited { color: darken($holo_blue_dark, 20%); text-decoration: none; }
+a:visited { color: darken($holo_blue_dark, 5%); text-decoration: none; }
 a:hover { color: $holo_blue_light; text-decoration: underline; }
 a:active { color: $holo_blue_light; text-decoration: underline; }
 
