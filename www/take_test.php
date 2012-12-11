@@ -70,7 +70,9 @@ else {
 
     <?php foreach($question->getAnswers() as $answer): ?>
 
-      <p style="margin: 0.3em 0px;"><input type="radio" name="question_answer_<?php echo $question->getId() ?>" value="<?php echo $answer->getQuestionIndex() ?>" />&nbsp;&nbsp;<?php echo $answer->getQuestionIndex() ?>.&nbsp;&nbsp;<?php echo $answer->getText() ?></p>
+      <?php $radioId = 'radio_qa_'.$question->getId().'_'.$answer->getId() ?> 
+
+      <label for="<?php echo $radioId ?>"><p style="margin: 0em 0px; padding: 0.3em 1px 0.5em 1px" onmouseover="javascript:$(this).css('background-color', '#3D3D3D');" onmouseout="javascript:$(this).css('background-color', '');"><input type="radio" name="question_answer_<?php echo $question->getId() ?>" id="<?php echo $radioId ?>" value="<?php echo $answer->getQuestionIndex() ?>" />&nbsp;&nbsp;<?php echo $answer->getQuestionIndex() ?>.&nbsp;&nbsp;<?php echo $answer->getText() ?></p></label>
       
     <?php endforeach ?>
 <?php endforeach ?>
