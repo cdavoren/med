@@ -4,8 +4,8 @@
 @import 'fonts/league_gothic.scss';
 @import 'fonts/roboto.scss';
 
-$body_width: 840px;
-$body_padding: 20px;
+$body_width: 960px;
+$body_padding: 10px;
 
 html {
     background-color: #000000;
@@ -15,7 +15,7 @@ html {
 
 body {
     /* Consider Roboto, Droid Sans, Georgia, Open Sans, PT Sans (Narrow) */
-    font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
+    font-family: 'Roboto', 'Helvetica', 'Verdana', 'Arial', sans-serif;
     font-size: 12px;
 }
 
@@ -48,6 +48,17 @@ h1 {
     color: $bright_foreground_holo_dark;
     border-bottom: 1px solid $dim_foreground_holo_dark;
     margin-top: 0px;
+}
+
+h2 {
+    font-family: 'RobotoBoldCondensed', 'Helvetica', 'Verdana', 'Arial', sans-serif;
+    font-size: 18px;
+    color: $bright_foreground_holo_dark;
+    margin-top: 0px;
+    margin-bottom: 0px;
+
+    text-transform: none; 
+    font-weight: normal;
 }
 
 table.inputform {
@@ -198,6 +209,30 @@ input[type=text],input[type=password] {
     padding: 1px;
     font-style: italic;
     color: $bright_foreground_disabled_holo_dark;
+}
+
+.column_4units {
+    float: left;
+    width: 300px;
+    margin-right: 20px;
+
+}
+
+.row_end {
+    margin-right: 0px;
+}
+
+.row_clear {
+    clear: both;
+}
+
+div.bigicon {
+    border: 3px solid #888;
+    border-radius: 10px;
+    -moz-border-radius: 10px;
+    text-align: center;
+    padding: 5px;
+    background-color: #555;
 }
 
 $normal_button_background: #474747;

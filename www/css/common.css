@@ -50,7 +50,7 @@ html {
 
 body {
   /* Consider Roboto, Droid Sans, Georgia, Open Sans, PT Sans (Narrow) */
-  font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
+  font-family: 'Roboto', 'Helvetica', 'Verdana', 'Arial', sans-serif;
   font-size: 12px; }
 
 em strong {
@@ -60,9 +60,9 @@ i strong {
   font-style: italic; }
 
 div#content {
-  width: 800px;
+  width: 940px;
   margin: 0px auto;
-  padding: 0px 20px;
+  padding: 0px 10px;
   background-color: #323232;
   padding-top: 20px;
   padding-bottom: 20px; }
@@ -90,6 +90,15 @@ h1 {
   color: #f3f3f3;
   border-bottom: 1px solid #bebebe;
   margin-top: 0px; }
+
+h2 {
+  font-family: 'RobotoBoldCondensed', 'Helvetica', 'Verdana', 'Arial', sans-serif;
+  font-size: 18px;
+  color: #f3f3f3;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  text-transform: none;
+  font-weight: normal; }
 
 table.inputform {
   border: 0px solid black;
@@ -120,7 +129,7 @@ div#header {
   border-bottom: 1px solid white; }
 
 div.headerinner {
-  width: 840px;
+  width: 960px;
   margin: 0px auto;
   height: 56px; }
 
@@ -176,7 +185,7 @@ div#footer {
   border-top: 1px solid white; }
 
 div.footerinner {
-  width: 840px;
+  width: 960px;
   margin: 0px auto; }
 
 div.footerlinks {
@@ -213,6 +222,25 @@ input[type=text], input[type=password] {
   padding: 1px;
   font-style: italic;
   color: #4c4c4c; }
+
+.column_4units {
+  float: left;
+  width: 300px;
+  margin-right: 20px; }
+
+.row_end {
+  margin-right: 0px; }
+
+.row_clear {
+  clear: both; }
+
+div.bigicon {
+  border: 3px solid #888;
+  border-radius: 10px;
+  -moz-border-radius: 10px;
+  text-align: center;
+  padding: 5px;
+  background-color: #555; }
 
 .custombutton {
   background-color: #474747;

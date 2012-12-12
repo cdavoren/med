@@ -10,6 +10,14 @@ $tgr = $em->getRepository('\rubikscomplex\model\TestGroup');
 $tr = $em->getRepository('\rubikscomplex\model\Test');
 
 $pageTitle = 'Index Page'; 
+
+$sem89Blocks = array(
+  'Cardiology, Respiratory and General Medicine',
+  'Neurosurgery, Neurology, ENT and Ophthalmology',
+  'Nephrology, Urology, Vascular Surgery and Endocrinology',
+  'Orthopaedics, Rheumatology and Dermatology',
+  'Oncology, Haematology and Infectious Diseases',
+  'Gastroenterology, Hepatobiliary and Colorectal Surgery');
 ?>
 
 <?php require_once('../template/header.php'); ?>
@@ -88,6 +96,63 @@ User information:<br />
 <?php endif ?>
 </p>
 
+<p>
+<div style="float: left;"><img src="images/sem89.png" alt="Semesters 8 & 9" title="Semesters 8 & 9" /></div>
+<h2>Semesters 8&9</h2>
+<div style="clear: both;"></div>
+<!--
+<img src="images/sem89_cardioresp.png" alt="<?php echo $sem89Blocks[0] ?>" title="<?php echo $sem89Blocks[0] ?>" />
+<img src="images/sem89_neuro_dim.png" alt="<?php echo $sem89Blocks[1] ?>" title="<?php echo $sem89Blocks[1] ?>" />
+<img src="images/sem89_endo.png" alt="<?php echo $sem89Blocks[2] ?>" title="<?php echo $sem89Blocks[2] ?>" />
+<img src="images/sem89_ortho.png" alt="<?php echo $sem89Blocks[3] ?>" title="<?php echo $sem89Blocks[3] ?>" />
+<img src="images/sem89_idhaem.png" alt="<?php echo $sem89Blocks[4] ?>" title="<?php echo $sem89Blocks[4] ?>" />
+<img src="images/sem89_gastro.png" alt="<?php echo $sem89Blocks[5] ?>" title="<?php echo $sem89Blocks[5] ?>" />
+<img src="images/circle_tick.png" alt="Correct" title="Correct" />
+<img src="images/triangle_cross.png" alt="Incorrect" title="Incorrect" />
+-->
+</p>
+
+<div>
+  <div class="column_4units">
+    <div class="bigicon">
+      <img src="images/sem89_cardioresp.png" alt="<?php echo $sem89Blocks[0] ?>" title="<?php echo $sem89Blocks[0] ?>" />
+      <h2>Cardiology, Respiratory and General Medicine</h2>
+    </div>
+  </div>
+  <div class="column_4units">
+    <div class="bigicon">
+      <img src="images/sem89_neuro_dim.png" alt="<?php echo $sem89Blocks[1] ?>" title="<?php echo $sem89Blocks[1] ?>" >
+      <h2>Neurosurgery, Neurology, ENT and Ophthalmology</h2>
+    </div>
+  </div>
+  <div class="column_4units row_end">
+    <div class="bigicon">
+      <img src="images/sem89_endo.png" alt="<?php echo $sem89Blocks[2] ?>" title="<?php echo $sem89Blocks[2] ?>" />
+      <h2>Nephrology, Urology, Vascular Surgery and Endocrinology</h2>
+    </div>
+  </div>
+  <div class="row_clear"></div>
+  <br />
+  <div class="column_4units">
+    <div class="bigicon">
+      <img src="images/sem89_ortho.png" alt="<?php echo $sem89Blocks[3] ?>" title="<?php echo $sem89Blocks[3] ?>" />
+      <h2>Orthopaedics, Rheumatology and Dermatology</h2>
+    </div>
+  </div>
+  <div class="column_4units">
+    <div class="bigicon">
+      <img src="images/sem89_idhaem.png" alt="<?php echo $sem89Blocks[4] ?>" title="<?php echo $sem89Blocks[4] ?>" />
+      <h2>Oncology, Haematology and Infectious Diseases</h2>
+    </div>
+  </div>
+  <div class="column_4units row_end">
+    <div class="bigicon">
+      <img src="images/sem89_gastro.png" alt="<?php echo $sem89Blocks[5] ?>" title="<?php echo $sem89Blocks[5] ?>" />
+      <h2>Gastroenterology, Hepatobiliary and Colorectal Surgery</h2>
+    </div>
+  </div>
+  <div class="row_clear"></div>
+</div>
 <p>
 Test information:<br />
 
