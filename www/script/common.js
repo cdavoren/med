@@ -189,7 +189,7 @@ function testSubmitError(jqXHR, errorThrown, message) {
 }
 
 function testSubmit(testData, testForm, options) {
-    console.log('Mark test.');
+    // console.log('Mark test.');
 
     $.ajax({
         url: $.appConfig.currentOrigin+'take_test.php',
