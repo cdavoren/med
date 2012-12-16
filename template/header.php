@@ -73,3 +73,15 @@ $(document).ready(function() {
 </script>
 </div>
 <div id="content">
+
+<?php
+if (isset($breadcrumbTrail)) {
+  $trail = array();
+  foreach ($breadcrumbTrail as $trailItem) {
+    $linkName = $trailItem['name'];
+    $linkURL = $trailItem['url'];
+    $trail[] = sprintf('<a href="%s" alt="%s" title="%s">%s</a>', $linkURL, $linkName, $linkName, $linkName);
+  }
+  echo join($trail, ' &gt; ');
+  echo '<br />';
+}

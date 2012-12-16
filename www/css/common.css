@@ -248,6 +248,31 @@ div.bigicon {
   padding: 5px;
   background-color: #555; }
 
+label.correct {
+  font-weight: bold;
+  color: white; }
+
+span#result_correct_total {
+  font-weight: bold;
+  font-size: 52px;
+  color: white; }
+
+div.correct {
+  text-align: center; }
+
+div.correct span.correct_label {
+  font-size: 16px;
+  font-weight: bold;
+  color: #669900; }
+
+div.incorrect {
+  text-align: center; }
+
+div.incorrect span.incorrect_label {
+  font-size: 16px;
+  font-weight: bold;
+  color: #ff4444; }
+
 .custombutton {
   background-color: #474747;
   border: 1px solid #858585;

@@ -143,6 +143,18 @@ function resetPasswordSubmit(evt) {
     });
 }
 
+function getAnswerChar(question, answerIndex) {
+    if (typeof answerIndex == 'string') {
+        answerIndex = parseInt(answerIndex);
+    }
+    if (question.answer_type == '1') {
+        return String.fromCharCode(answerIndex+64);
+    }
+    else {
+        return String.fromCharCode(answerIndex+48);
+    }
+}
+
 function testSubmitSuccess(testData, correctData) {
     // console.log(testData);
     // console.log(correctData);
@@ -166,21 +178,43 @@ function testSubmitSuccess(testData, correctData) {
 
     questionsShown.each(function(index, value) {
         var qid = $(value).attr('name').substring('question_shown_'.length);
+        var selectorPrefix = 'div#question_'+correctData[qid].number+' ';
+        // alert(selectorPrefix);
         // console.log(qid+': '+answers[qid]+'/'+correctData[qid].correct_answer);
+        $($(selectorPrefix+' label')[parseInt(correctData[qid].correct_answer)-1]).addClass('correct');
+        $($(selectorPrefix+' div.explanation')).css('display', 'block');
+        $(selectorPrefix+'input').each(function() {
+            $(this).attr('disabled', 'disabled');
+        });
+
         if (answers[qid] !== undefined && correctData[qid].correct_answer == answers[qid]) {
-            html += 'Q'+correctData[qid].number+' correct: '+answers[qid]+'<br />';
+            // alert(selector);
+            $(selectorPrefix+'div.correct').css('display', 'block');
+            $(selectorPrefix+'div.incorrect').css('display', 'none');
+            html += 'Q'+correctData[qid].number+' correct: '+getAnswerChar(correctData[qid], answers[qid])+'<br />';
             numCorrect++;
+            $('#question_'+qid+'_feedback').html(getAnswerChar(correctData[qid], answers[qid])+' was correct.')
         }
         else {
-            html += 'Q'+correctData[qid].number+' incorrect: ('+
-                (answers[qid] === undefined ? 'no answer' : answers[qid]) +
-                ' / '+correctData[qid].correct_answer+')<br />';
+            // alert(selector)
+            $(selectorPrefix+'div.incorrect').css('display', 'block');
+            $(selectorPrefix+'div.correct').css('display', 'none');
+            html += 'Q'+correctData[qid].number+' is incorrect: ('+
+                (answers[qid] === undefined ? 'no answer' : getAnswerChar(correctData[qid], answers[qid])) +
+                ' / '+getAnswerChar(correctData[qid], correctData[qid].correct_answer)+')<br />';
+            $('#question_'+qid+'_feedback').html(''+
+                (answers[qid] === undefined ? 'Correct answer was '+getAnswerChar(correctData[qid], correctData[qid].correct_answer)+' (you did not respond)' :
+                                              getAnswerChar(correctData[qid], answers[qid])+' incorrect (correct answer was '+getAnswerChar(correctData[qid], correctData[qid].correct_answer)+')'));
         }
     });
 
     html = 'Number correct: '+numCorrect+'/'+questionsShown.length+'<br />'+html;
 
-    $('div#results').html(html);
+    $('span#result_correct_total').html(''+numCorrect+'/'+questionsShown.length);
+    // $('div#results').html(html);
+    $('div#results').css('display', 'block');
+    $('input#test_submit').css('display', 'none');
+    $(window).scrollTop($('div#results').position().top);
 }
 
 function testSubmitError(jqXHR, errorThrown, message) {
@@ -190,12 +224,11 @@ function testSubmitError(jqXHR, errorThrown, message) {
     */
     alert(errorThrown);
     alert(message);
-
 }
 
 function testSubmit(testData, testForm, options) {
     // console.log('Mark test.');
-    alert($.appConfig.currentOrigin+'take_test.php');
+    // alert($.appConfig.currentOrigin+'take_test.php');
 
     $.ajax({
         url: $.appConfig.currentOrigin+'take_test.php',

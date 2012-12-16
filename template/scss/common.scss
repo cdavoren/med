@@ -243,6 +243,37 @@ div.bigicon {
     background-color: #555;
 }
 
+label.correct {
+    font-weight: bold;
+    color: white;
+}
+
+span#result_correct_total {
+    font-weight: bold;
+    font-size: 52px;
+    color: white;
+}
+
+div.correct {
+    text-align: center;
+}
+
+div.correct span.correct_label {
+    font-size: 16px;
+    font-weight: bold;
+    color: $holo_green_dark;
+}
+
+div.incorrect {
+    text-align: center;
+}
+
+div.incorrect span.incorrect_label {
+    font-size: 16px;
+    font-weight: bold;
+    color: $holo_red_light;
+}
+
 $normal_button_background: #474747;
 $normal_button_top_border: #858585;
 $normal_button_bottom_border: #343434;
