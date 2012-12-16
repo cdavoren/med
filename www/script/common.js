@@ -184,12 +184,18 @@ function testSubmitSuccess(testData, correctData) {
 }
 
 function testSubmitError(jqXHR, errorThrown, message) {
+	/*
     console.log(errorThrown);
     console.log(message);
+    */
+    alert(errorThrown);
+    alert(message);
+
 }
 
 function testSubmit(testData, testForm, options) {
     // console.log('Mark test.');
+    alert($.appConfig.currentOrigin+'take_test.php');
 
     $.ajax({
         url: $.appConfig.currentOrigin+'take_test.php',
