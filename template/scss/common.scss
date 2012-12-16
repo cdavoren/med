@@ -61,6 +61,14 @@ h2 {
     font-weight: normal;
 }
 
+h4 {
+    font-style: italic;
+}
+
+span.highlight {
+    color: $holo_blue_dark;
+}
+
 table.inputform {
     border: 0px solid black;
     border-collapse: collapse;

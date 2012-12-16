@@ -100,6 +100,12 @@ h2 {
   text-transform: none;
   font-weight: normal; }
 
+h4 {
+  font-style: italic; }
+
+span.highlight {
+  color: #0099cc; }
+
 table.inputform {
   border: 0px solid black;
   border-collapse: collapse;

@@ -39,7 +39,7 @@ $.appConfig = <?php echo json_encode($confJS) ?>;
 <div class="headertitle">
 <a href="<?php echo $config['app_root']?>" title="Home">
 <img id="headerlogo" src="<?php echo $pathPrefix ?>images/medtest_logo.png" alt="medtest" />
-<span>MedTest</span>
+<span>Vitruvius</span>
 </a>
 </div>
 <div class="headerright">
