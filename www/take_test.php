@@ -4,7 +4,7 @@ define('PAGE_OVERRUN', 5);
 
 require_once('../lib/init.php');
 
-$pageTitle = 'Test';
+$pageTitle = 'Take Test';
 
 $em = App::getManager();
 $config = App::getConfiguration();
@@ -78,6 +78,7 @@ else {
 <?php echo $endIndex ?>
 -->
 
+<p>You can <a href="browse_test.php?id=<?php echo $test->getId() ?>" alt="Browse" title="Browse">browse this test</a> instead with solutions and explanations.</p>
 <form action="#" method="post" id="testform">
 <p>
 <i>
