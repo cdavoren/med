@@ -146,7 +146,9 @@ else {
     <br />
 <?php endforeach ?>
 <br />
-<input type="submit" name="submit" id="test_submit" value="Mark" />
+<div style="text-align: center;">
+  <input type="submit" name="submit" id="test_submit" class="custombutton" style="font-size: 18px; padding: 2px 50px;" value="Mark" />
+</div>
 </form>
 <br />
 <div id="results" style="border: 1px #444 solid; padding: 10px; display: none;">
