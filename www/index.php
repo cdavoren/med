@@ -53,6 +53,7 @@ $sem89Blocks = array(
   'Gastroenterology, Hepatobiliary and Colorectal Surgery');
 
 $preclinFullNames = array(
+  'NDM' => 'Nutrition, Digestion & Metabolism',
   'CRL' => 'Cardiac, Respiratory and Locomotor',
   'CSGD' => 'Control Systems, Growth & Development',
   'DMF' => 'Defense Mechanisms and Their Failure',
@@ -235,6 +236,35 @@ $users = $ur->findAll();
 <br />
 
 <h1>PRE-CLINICALS</h1>
+
+<div>
+  <div style="float: left; width: 140px; margin-right: 20px; text-align: center;">
+    <img src="images/ndm.png" alt="<?php echo $preclinFullNames['NDM'] ?>" title="<?php $preclinFullNames['NDM'] ?>" />
+  </div>
+  <div style="float: left; width: 780px;">
+    <h2><?php echo $preclinFullNames['NDM']?></h2>
+    <br />
+    <div>
+      <div style="float: left; width: 220px; margin-right: 20px;">
+        <h4>Midsemester Tests:</h4>
+        <?php echo join(makeTestLinksByGroup('NDM', '/Midsemester/'), '<br />') ?>
+      </div>
+      <div style="float: left; width: 220px; margin-right: 20px;">
+        <h4>Trefor Morgan Tests:</h4>
+        <?php echo join(makeTestLinksByGroup('NDM', '/Trefor/'), '<br />') ?>
+      </div>
+      <div style="float: left; width: 220px; margin-right: 20px;">
+        <h4>Final MCQs:</h4>
+        <?php echo join(makeTestLinksByGroup('NDM', '/Final/'), '<br />') ?>
+      </div>
+      <div style="clear: both;"></div>
+    </div>
+  </div>
+  <div style="clear: both"></div>
+</div>
+
+<br />
+<br />
 
 <div>
   <div style="float: left; width: 140px; margin-right: 20px; text-align: center;">

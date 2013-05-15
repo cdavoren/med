@@ -21,6 +21,7 @@ $groupDescriptions = array(
     'HP3' => 'Health Practice 3',
     'HP4' => 'Health Practice 4',
     'HP5' => 'Health Practice 5',
+    'NDM' => 'Nutrition, Digestion and Metabolism',
     'CRL' => 'Cardiac, Respiratory and Locomotor',
     'CSGD' => 'Control Systems and Development',
     'DMF' => 'Defense Mechanisms and their Failure',
