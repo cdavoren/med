@@ -18,6 +18,17 @@ function getAnswerChar($question, $answerIndex) {
   }
 }
 
+function parseImages($questionText, $question) {
+  // Note: Account for 'images/' prefix for old tests
+  $imagesPattern = "/(.*?)<img(.*?)src=\"(\\/?images\\/)?(.*?)\"/";
+  // $newImagesMatch = "/(.*?)<img(.*?)src=\"(.*?)\"/";
+  $replacement = '$1<img$2src="images/'.$question->getIdentifier().'/$4"';
+
+  $text = preg_replace($imagesPattern, $replacement, $questionText);
+
+  return $text;
+}
+
 if (isset($_REQUEST['id'])) {
   $test = $em->find('\rubikscomplex\model\Test', intval($_REQUEST['id']));
   $pageTitle .= ' - '.$test->getTitle();
@@ -99,7 +110,7 @@ else {
       <span style="font-size: 36px; font-weight: bold">Q<?php echo $question->getNumber() ?></span>
     </div>
     <div style="float: left; width: 620px; margin-right: 20px; padding-top: 10px;">
-      <p><?php echo str_replace("\n\n",'<br />', $question->getPrompt()) ?></p>
+      <p><?php echo str_replace("\n\n",'<br />', parseImages($question->getPrompt(), $question)) ?></p>
 
       <?php foreach($question->getAnswers() as $answer): ?>
 
@@ -113,7 +124,7 @@ else {
           <div style="border: 1px solid #444; border-radius: 6px; padding: 10px; ">
             <h4>Explanation:</h4>
             <br />
-            <?php echo str_replace("\n", '<br />', $question->getExplanation()) ?>
+            <?php echo str_replace("\n", '<br />', parseImages($question->getExplanation(), $question)) ?>
           </div>
         <?php endif ?>
       </div>
