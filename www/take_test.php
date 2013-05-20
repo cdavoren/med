@@ -29,6 +29,12 @@ function parseImages($questionText, $question) {
   return $text;
 }
 
+function parseMultiAnswers($questionText) {
+  $answerPattern = "/(.*?)A\\)(.*?)B\\)(.*?)C\\)(.*?)D\\)(.*?)/s";
+  $replacement = "$1<br /><br /><b>A)</b>$2<br /><b>B)</b>$3<br /><b>C)</b>$4<br /><b>D)</b>$5";
+  return preg_replace($answerPattern, $replacement, $questionText);
+}
+
 if (isset($_REQUEST['id'])) {
   $test = $em->find('\rubikscomplex\model\Test', intval($_REQUEST['id']));
   $pageTitle .= ' - '.$test->getTitle();
@@ -110,7 +116,7 @@ else {
       <span style="font-size: 36px; font-weight: bold">Q<?php echo $question->getNumber() ?></span>
     </div>
     <div style="float: left; width: 620px; margin-right: 20px; padding-top: 10px;">
-      <p><?php echo str_replace("\n\n",'<br />', parseImages($question->getPrompt(), $question)) ?></p>
+      <p><?php echo str_replace("\n\n",'<br />', parseMultiAnswers(parseImages($question->getPrompt(), $question))) ?></p>
 
       <?php foreach($question->getAnswers() as $answer): ?>
 
